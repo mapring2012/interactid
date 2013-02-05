@@ -1,0 +1,26 @@
+<?php 
+	class SendEmail{
+		public $name;
+		public $email;
+		public $sendemail;
+		function SendEmail($name,$email,$base,$lan,$getCodGeneration,$header,$subjects,$activeAccount,$BodyAccountActive){
+			$this->name=$name;
+			$this->email=$email;
+			$subject = $subjects." ".$this->name;
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers .= 'From:'."'.$header.'" . "\r\n";
+			//begin of HTML messages
+			$message = '<div style="border-radius:5px;border:solid 1px #dfdfdf;font-family:Arial;word-wrap:break-word;width:670px">'.$activeAccount.'
+<table cellspacing="0" cellpadding="0" style="background-color:#ededed;border-radius:5px 5px 0 0;width:670px"><tbody><tr><td><div style="padding:30px 30px 0;font-size:20px">
+            <div style="margin-top:20px;width:0;min-height:0;border-bottom:10px solid #fff;border-left:10px solid transparent;border-right:10px solid transparent"></div></div></td><td style="vertical-align:middle;text-align:right;padding-right:30px"><img src="'.$base.'/images/logo1.png"/></td></tr></tbody></table><div style="line-height:18px;font-size:14px"><div style="padding:30px 30px 40px">'.$BodyAccountActive.'<a href="'.$base.'/'.$lan.'/index/confirm?email='.$this->email.'&activated='.$getCodGeneration.'">Active Now!</a></div></div>
+<div style="line-height:18px;border-radius:0 0 5px 5px;font-size:14px;padding:30px;border-top:solid 1px #dfdfdf"><p><strong>Interactid</strong><br><br> 110 avenue Marceau 92 400 COURBEVOIE FRANCE.<br> Email:&nbsp;contact@interactid.com<br> Tel : 01.46.43.11.08</p></div></div>';
+			$this->sendemail=mail($this->email, $subject, $message, $headers);
+			return $this->sendemail;
+			//end to confirm email
+		}
+		
+		
+	}
+
+?>

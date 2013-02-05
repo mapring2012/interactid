@@ -1,0 +1,46 @@
+.icon-screen {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-image: url(../images/icons/usual/screen.png);
+	background-repeat: no-repeat;
+}
+.icon-screen {
+	background-position: 0 0;
+}
+
+
+.icon-close {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-image: url(../images/icons/usual/close.png);
+	background-repeat: no-repeat;
+}
+.icon-close {
+	background-position: 0 0;
+}
+
+.icon-arrow-14 {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background-image: url(../images/icons/usual/arrow-left.png);
+	background-repeat: no-repeat;
+
+}
+.icon-arrow-14 {
+	background-position: 0 0;
+}
+
+.icon-arrow-17 {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background-image: url(../images/icons/usual/arrow-right.png);
+	background-repeat: no-repeat;
+
+}
+.icon-arrow-17 {
+	background-position: 0 0;
+}

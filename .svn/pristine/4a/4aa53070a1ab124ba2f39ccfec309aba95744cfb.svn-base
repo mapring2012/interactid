@@ -1,0 +1,356 @@
+<?php 
+	echo $this->showUser;
+?>
+<!-- <div class="navbar">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<div class="nav pull-right"></div>
+			<a href="http://<?php echo $_SERVER['SERVER_NAME'];?><?php echo $this->baseUrl(); ?>/" title="" class="logo"><img
+				src="<?php echo $this->baseUrl();?>/images/logo.png" alt="" /></a>
+		</div>
+	</div> 
+</div>-->
+<div class="wrapper">
+	<!---for personal-->
+	<div class="fluid">
+
+		<form enctype="multipart/form-data" id="validate" class="main"
+			method="post"
+			action="<?php echo $this->url(array('controller'=>'index','action'=>'register'));?>">
+			<fieldset>
+				<span class="widget grid2" style="border: none"></span>
+				<div class="widget grid8">
+					<div class="whead">
+						<h6>INSCRIPTION PERSONALLE</h6>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('profile');?><span class="req">*</span></label>
+						</div>
+						<div class="grid9">
+							<select name="txtprofil" id="profil" class="validate[required]">
+								<option value="">---<?php echo $this->translate('selectprofile')?>---</option>
+								<option value="Clent">Clent</option>
+								<option value="Consultant">Consultant</option>
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('title')?><span class="req">*</span></label>
+						</div>
+						<div class="grid9">
+							<select name="txttitle" id="title" class="validate[required]">
+								<option value="">---<?php echo $this->translate('selecttitle')?>---</option>
+								<option value="Mr">Mr.</option>
+								<option value="Mrs">Mrs.</option>
+								<option value="Miss">Miss.</option>
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('firstname')?><span class="req">*</span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtfirstname" id="firstname" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('lastname')?><span class="req">*</span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtlastname" id="lastname" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('username')?><span class="req">* </span></label>
+							<?php 
+				
+							 if(isset($_SESSION['duplicateUserName'])){
+							 	echo $_SESSION['duplicateUserName'];
+							 	unset($_SESSION['duplicateUserName']);
+							 }
+							?>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtusername" id="username" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('password')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="password" class="validate[required]" value=""
+								name="txtpassword" id="password" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('confirmpassword')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="password"
+								class="validate[required,equals[password]]" value=""
+								name="txtrepeatpassword" id="repeatpassword" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('email')?><span class="req">* </span></label>
+							<?php 
+				
+							 if(isset($_SESSION ['duplicateUserEmail'])){
+							 	echo $_SESSION ['duplicateUserEmail'];
+							 	unset($_SESSION ['duplicateUserEmail']);
+							 }
+							?>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required,custom[email]]"
+								value="" name="txtemail" id="email" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('position')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtposition" id="position" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('telephone')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text"
+								class="validate[required,custom[onlyNumberSp]]"
+								name="txttelephone" id="telephone" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('mobilephone')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value=""
+								class="validate[required,custom[onlyNumberSp]]"
+								name="txtmobilephone" id="mobilephone" />
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+				</div>
+			</fieldset>
+
+			<!---for company ---->
+			<fieldset>
+				<span class="widget grid2" style="border: none"></span>
+				<div class="widget grid8">
+					<div class="whead">
+						<h6>INFORMATION JURIDIQUE</h6>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('companyname')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtcompanyname" id="companyname" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('logo')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="file" id="logo" name="fileupload" class="logo"
+								size="18.5" style="opacity: 0;" class="validate[required]" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('companyactivity')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtcompanyactivity" id="companyactivity" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('siret')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="password" class="validate[required]" value=""
+								name="txtsiret" id="siret" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('codeAPE')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="password"
+								class="validate[required]" value=""
+								name="txtcodeape" id="codeape" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('capitalsocail')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required]" value=""
+								name="txtcapitalsocail" id="captitalsocail" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('staff')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" class="validate[required,maxSize[6]]" value=""
+								name="txtstaff" id="staff" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('N° TVA')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value=""
+								class="validate[required,custom[onlyNumberSp]]" name="txttva"
+								id="tva" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('siret')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value="" class="validate[required]"
+								name="txtsite" id="site" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('address')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value="" class="validate[required]"
+								name="txtadress" id="adress" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('codepostal')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value="" class="validate[required]"
+								name="txtzipcode" id="zipcode" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('city')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value="" class="validate[required]"
+								name="txtcity" id="city" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('country')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<select name="txtcountry" id="country" class="validate[required]">
+								<option value="">---<?php echo $this->translate('selectcountry')?>---</option>
+								<option value="France">France</option>
+								<option value="France, Metropolitan">France, Metropolitan</option>
+								<option value="French Guiana">French Guiana</option>
+								<option value="French Polynesia">French Polynesia</option>
+								<option value="French Southern Territories">French Southern
+									Territories</option>
+								<option value="Germany">Germany</option>
+								<option value="Italy">Italy</option>
+								<option value="New Zealand">New Zealand</option>
+								<option value="Portugal">Portugal</option>
+								<option value="Sweden">Sweden</option>
+								<option value="Switzerland">Switzerland</option>
+								<option value="Turkey">Turkey</option>
+								<option value="United Kingdom">United Kingdom</option>
+								<option value="United States">United States</option>
+								<option value="United States Minor Outlying Islands">United
+									States Minor Outlying Islands</option>
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('fax')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value="" class="validate[required]"
+								name="txtfax" id="fax" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="formRow">
+						<div class="grid3">
+							<label><?php echo $this->translate('telephone       ')?><span class="req">* </span></label>
+						</div>
+						<div class="grid9">
+							<input type="text" value=""
+								class="validate[required,custom[onlyNumberSp]]"
+								name="txtcompanytelephone" id="telephone" />
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="formRow">
+						<input type="submit" name="btnSave" value="<?php echo $this->translate('submit')?>"
+							class="buttonM bBlack formSubmit" />
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

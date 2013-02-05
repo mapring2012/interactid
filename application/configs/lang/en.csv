@@ -1,0 +1,75 @@
+?# English
+Home;Home'
+site-name;Interactid
+site-discrition;Interactid
+site-author;Interactid
+
+##### for login page ####
+lang;en
+message;Welcome to interactid application
+Connection;Connection
+message;interactid application
+welcome-to;Welcome to
+password;Password
+username;Username
+forgot-your-password;Forgot your password?
+your-username-or-password-is-incorrect;Your username or password is incorrect!
+remember-me;Remember Me
+login;Login
+logout;Logout
+register;Register
+#for error messages login##
+errorLogin;In valid username and password!
+errorBlank;Please enter password and username!
+
+
+########for register ######
+profile;Profile
+title;Title
+firstname;Firstname
+lastname;Lastname
+username;Username
+password;Password
+confirmpassword;Confirm Password
+email;Email
+position;Position
+telephone;Telephone
+mobilephone;Mobile Phone
+compnayname;Company Name
+logo;Logo
+companyactivity;Company Activity
+siret;Siret
+codeAPE;CodeAPE
+capitalsocail;Capital Socail
+staff;Staff
+N° TVA;N° TVA
+siteweb;Site web http://www
+adress;Address
+codepostal;Zip Code / Code Postal
+city;City
+country;Country
+fax;Fax
+selectprofile;Please select profile
+selecttitle;Please select title
+selectcountry;Please select country
+submit;Submit
+recoveryAccount;Can't access your account?
+
+
+###########For Deshboard##############
+home;Dashboard
+admin;Administrator
+support;Support
+employee;Employee
+myinteractid;My Interactid
+historical;Historical
+exportdestables;Export des Tables
+controlvisuel;Control Visuel
+myinterventions;My interventions 
+myactivitystream;My Activity Stream   
+startdate;Start date 
+accept;Accept?
+
+
+########### BUTTON ##################
+buttonContinue;Continue

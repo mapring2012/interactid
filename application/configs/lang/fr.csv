@@ -1,0 +1,75 @@
+?# Francais
+Home;Acceuil
+site-name;Interactid
+site-discrition;Interactid
+site-author;Interactid
+
+##### for login page ####
+lang;fr
+message;Interactid Plateform Collaborative De Mobilier - Aires de Jeux
+Connection;Connexion
+message;interactid application
+welcome-to;Bienvenue sur
+password;Mot de passe
+username;Choisissez Identifiant
+forgot-your-password;Connectez-vous Me votre mot de passe?
+your-username-or-password-is-incorrect;Votre identifiant ou votre mot de passe sont incorrects!
+remember-me;Se souvenir de moi
+login;Connexion
+logout;Logout
+register;ENREGISTRER
+#for error messages login##
+errorLogin;Votre identifiant ou votre mot de passe sont incorrects!
+errorBlank;Veuillez entrez votre identifiant et votre mot de passe!
+
+
+########for register ######
+profile;profil
+title;Civilité
+firstname;Prénom
+lastname;Nom
+username;hoisissez Identifiant
+password;Mot de passe
+confirmpassword;Confirmation mod de passe
+email;Email
+position;Fonction
+telephone;Numéro Tel fixe
+mobilephone;Numéro Tel portable
+companyname;Nom Société
+logo;Logo
+companyactivity;Activité de la société
+siret;Siret
+codeAPE;CodeAPE
+capitalsocail;Capital Socail
+staff;Effectif
+N° TVA;N° TVA
+siteweb;Site web http://www
+address;Address
+codepostal;Codpostal
+city;Ville
+country;Pays
+fax;Fax
+selectprofile;Sélectionnez votre Profil
+selecttitle;Sélectionnez votre Civilité 
+selectcountry;Sélectionnez votre Pays
+submit;soumettre
+recoveryAccount;Vous ne pouvez pas accéder à votre compte?
+
+
+###########For Deshboard##############
+home;Accueil
+admin;Administrateur
+support;Soutenir
+employee;Employé
+myinteractid;Mon Interactid
+historical;Historique
+exportdestables;Exporter des Tables
+controlvisuel;Contrôle Visuel
+myinterventions;Mes interventions
+myactivitystream;Mon flux d'activité
+startdate;Date de début
+accept;Accepter?
+
+
+########### BUTTON ##################
+buttonContinue;Continuer

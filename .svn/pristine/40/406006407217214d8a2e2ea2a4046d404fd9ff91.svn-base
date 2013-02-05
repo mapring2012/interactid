@@ -1,0 +1,13 @@
+<div class="navbar">
+	<div class="navbar-inner">
+
+		<div class="container-fluid">
+			<a href="<?php echo $this->baseUrl();?>/" title="" class="logo"><img
+				src="<?php echo $this->baseUrl();?>/images/logo.png" alt="" /></a>
+			<!-- <a
+				href="<?php echo $this->url(array('controller'=>'index','action'=>'register','lang'=>$this->translate('lang')));?>"
+				class="btn btn-primary pull-right"><?php echo $this->translate('register');?></a> -->
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,180 @@
+<?php
+session_start ();
+require_once 'Zend/Controller/Plugin/Abstract.php';
+class IndexController extends Zend_Controller_Action {
+	private $_registerDb = NULL;
+	public function init() {
+		/* Initialize action controller here */
+		$this->view->assign ( 'action', 'index' );
+		$this->_registerDb = new Application_Model_Register ();
+	}
+	
+	// this is function for login
+	public function indexAction() {
+		// action body
+		if ($this->getRequest ()->getPost ( 'BtnSubmit' )) {
+			$UserName = "";
+			$UserName = $this->getRequest ()->getPost ( 'User_login' );
+			$UserPassword = $this->getRequest ()->getPost ( 'User_password' );
+			if ($UserName != "" && @$UserPassword != "") {
+				$result = $this->_registerDb->loginActionPro ( $UserName, $UserPassword );
+				foreach ( $result as $column => $value ) {
+					$UserNames = $value ['User_login'];
+					$PassWords = $value ['User_password'];
+				}
+				if (@$UserNames == $UserName) {
+					$_SESSION ['UserSession'] = $UserNames;
+					$_SESSION ['User_Passwords'] = $PassWords;
+					if ($this->getRequest ()->getPost ( 'txtRemember' ) == "autoLogin") {
+						setcookie ( "cookname", $_SESSION ['UserSession'], time () + 60, "/" );
+						setcookie ( "cookpass", $_SESSION ['User_Passwords'], time () + 60, "/" );
+					}
+					$lan = $this->_getParam('lang');
+					$this->_redirect ($lan.'/index/dashboard' );
+                     return ;
+				} else {
+					//$this->view->Login = '';
+					$_SESSION['errorIn']="ErrorIncorrect";
+				}
+			} else {
+				//$this->view->Login = '';
+				$_SESSION['errorBlank']="ErrorBlacnk";
+			}
+		}
+	}
+	
+	// this is function for register user
+	
+	// sellect users
+	public function tableuser() {
+		$getTableUser = $this->_registerDb->selectAllUsersName ();
+		return $getTableUser;
+	}
+	// end user
+	public function registerAction() {
+		if ($this->getRequest ()->getPost ( 'btnSave' )) {
+			foreach ( $this->tableuser () as $reRows ) {
+				$UserNames = $reRows ['User_login'];
+				$userEmail = $reRows ['User_Mail'];
+				if ($UserNames == $this->getRequest ()->getPost ( 'txtusername' ) || $userEmail == $this->getRequest ()->getPost ( 'txtemail' )) {
+					$_SESSION ['duplicateUserName'] = "UserName can not duplicated";
+					$lan = $this->_getParam('lang');
+					$this->_redirect ( $lan.'/index/register' );
+					exit ();
+				}
+			}
+			$dataAdd = array ();
+			$GetPost = $this->getRequest ();
+			require_once 'Zend/ResizeClassImage.php';
+			$fname = $_FILES ['fileupload'] ['name'];
+			$fsize = $_FILES ['fileupload'] ['size'];
+			$ftmp = $_FILES ['fileupload'] ['tmp_name'];
+			$ftype = $_FILES ['fileupload'] ['type'];
+			$image = new ResizeClassImage ();
+			$baseUpload = $this->basePathUpload ();
+			$check_type = $image->checkType ( $ftype ); // check file type
+			$check_size = $image->checkSize ( $fsize ); // check file size
+			if (true == $check_type) {
+				if (true == $check_size) {
+					$image->load ( $ftmp );
+					$image->resize ( 500, 500 );
+					// resize to width = 500px and height =500p
+					if (file_exists ( $baseUpload . '/' . $fname )) {
+						$fname = $image->random ( 5 ) . '-' . $fname;
+						$image->save ( $baseUpload . '/' . $fname ); // =
+						                                             // move_upload_file()
+						                                             // create
+						                                             // thumbnail
+						$image->resize ( 70, 70 );
+						$image->save ( $baseUpload . '/thumb/' . $fname );
+					} else {
+						$image->save ( $baseUpload . '/' . $fname ); // =
+						                                             // move_upload_file()
+						                                             // create
+						                                             // thumbnail
+						$image->resize ( 70, 70 );
+						$image->save ( $baseUpload . '/thumb/' . $fname );
+					}
+					$dataOrganism = array (
+							'Org_RaisonSocial' => $GetPost->getPost ( 'txtcompanyname' ),
+							'Org_Siret' => $GetPost->getPost ( 'txtsiret' ),
+							'Org_Adresse1' => $GetPost->getPost ( 'txtadress' ),
+							'Org_ZipCode' => $GetPost->getPost ( 'txtzipcode' ),
+							'Org_City' => $GetPost->getPost ( 'txtcity' ),
+							'Org_Country' => $GetPost->getPost ( 'txtcountry' ),
+							'Org_Telephone' => $GetPost->getPost ( 'txtcompanytelephone' ),
+							'Org_Fax' => $GetPost->getPost ( 'txtfax' ),
+							'Org_Website' => $GetPost->getPost ( 'txtsite' ),
+							'Org_activity' => $GetPost->getPost ( 'txtcompanyactivity' ),
+							'Org_codeAPE' => $GetPost->getPost ( 'txtcodeape' ),
+							'Org_capitalsocail' => $GetPost->getPost ( 'txtcapitalsocail' ),
+							'Org_staff' => $GetPost->getPost ( 'txtstaff' ),
+							'Org_TVA' => $GetPost->getPost ( 'txttva' ),
+							'Org_Logo' => $fname 
+					);
+					
+					$LastID = $this->_registerDb->addOrganism ( $dataOrganism );
+					$dataAdd = array (
+							'User_login' => $GetPost->getPost ( 'txtusername' ),
+							'User_password' => $GetPost->getPost ( 'txtpassword' ),
+							'User_Lastname' => $GetPost->getPost ( 'txtlastname' ),
+							'User_Firstname' => $GetPost->getPost ( 'txtfirstname' ),
+							'User_Mobilephone' => $GetPost->getPost ( 'txtmobilephone' ),
+							'User_Officephone' => $GetPost->getPost ( 'txttelephone' ),
+							'User_Mail' => $GetPost->getPost ( 'txtemail' ),
+							'User_Position' => $GetPost->getPost ( 'txtposition' ),
+							'User_profile' => $GetPost->getPost ( 'txtprofil' ),
+							'User_title' => $GetPost->getPost ( 'txttitle' ),
+							'Org_Id' => $LastID 
+					);
+					$this->_registerDb->addRegister ( $dataAdd );
+				}
+			}
+
+			$lan = $this->_getParam('lang');
+			$this->_redirect ( $lan.'/index' );
+		}
+	}
+	
+	// this is function for open new dashboard
+	public function dashboardAction() {
+		// this is body of function
+		if (! $this->checkSession ()) {
+			$lan = $this->_getParam('lang');
+			$this->_redirect ($lan.'/index' );
+			exit ();
+		} else {
+			$UserNameget = $_SESSION ['UserSession'];
+			$getResultProfile = $this->_registerDb->selectProfile ( $UserNameget );
+			$this->view->getResultProfile = $getResultProfile;
+			$this->view->baseImage = $this->basePathUpload ();
+		}
+	}
+	
+	// this is function for logout
+	public function logoutAction() {
+		$SessionName = $_SESSION ['UserSession'];
+		if ($this->checkSession ()) {
+			unset ($SessionName );
+			session_destroy ();
+			$lan = $this->_getParam('lang');
+			$this->_redirect ( $lan.'/index/index' );
+			exit ();
+		}
+	}
+	
+	// this is function for check session
+	private function checkSession() {
+		$SessionName = $_SESSION ['UserSession'];
+		if (isset ( $SessionName )) {
+			return $SessionName;
+		}
+	}
+	
+	// this is function for get basepath upload images
+	public function basePathUpload() {
+		$pathupload = realpath ( APPLICATION_PATH . '/../public/data/uploads' );
+		return $pathupload;
+	}
+}
+

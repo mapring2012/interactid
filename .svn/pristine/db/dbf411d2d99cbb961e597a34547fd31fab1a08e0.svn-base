@@ -1,0 +1,89 @@
+<?php
+// for redirect page
+$home = $_SERVER ['REQUEST_URI'];
+$current = $this->baseUrl () . '/';
+if ($home == $current) {
+	?>
+<script type="text/javascript">document.location.href="<?php echo $this->baseUrl();?>/en/index/index"</script>
+<?php
+}
+// end for redirect page
+
+?>
+<!-- <script type="text/javascript">document.location.href="<?php echo $this->baseUrl();?>/en/index/index"</script> -->
+<div class="container-fluid">
+	<div class="row-fluid">  
+		<div class="dialog span4">
+				<!-- messege -->  
+				<?php 
+					if(isset($this->success))
+					{
+				?>
+				<div class="nNote nSuccess">				
+                 <p><?php echo $this->success;?> </p>
+				</div>
+				<?php 
+					}
+				?>
+				<!-- end messege -->
+		
+		<div style="height:15px;display:block;"></div>
+			<div class="block">
+				<div class="block-heading"><?php echo $this->translate('Connection');?></div>
+				<div class="block-body">
+				
+					<form method="post"
+						action="<?php echo $this->escape($this->action);?>" id="validate" class="main">
+						<fieldset>
+						<p><?php echo $this->translate('welcome-to');?></p>
+						<p>
+							<b><?php echo $this->translate('message');?></b>
+						</p>
+						
+						<p style="color: red;"><?php
+						if (isset ( $_SESSION ['errorBlank'] )) {
+							echo $this->translate ( 'errorBlank' );
+							unset ( $_SESSION ['errorBlank'] );
+						}
+						if (isset ( $_SESSION ['errorIn'] )) {
+							echo $this->translate ( 'errorLogin' );
+							unset ( $_SESSION ['errorIn'] );
+						}
+						?></p>
+						<label><?php echo $this->translate('username');?> </label> <input
+							value="<?php echo (isset($_COOKIE['cookname']))?$_COOKIE['cookname']:'';?>"
+							type="text" name="User_login" class="validate[required] span12" id="username" /> <label><?php echo $this->translate('password');?></label>
+						
+						<input
+							value="<?php echo (isset($_COOKIE['cookpass']))?$_COOKIE['cookpass']:'';?>"
+							name="User_password" type="password" class="validate[required] span12" name="minValid" id="minValid"  /> <select
+							 id="languageSwitch">
+							<option>Select your language</option>
+							<option value="fr"
+								<?php echo ($this->translate('lang')=='fr'?'selected="selected"':'fr')?>>Franch</option>
+							<option value="en"
+								<?php echo ($this->translate('lang')=='en'?'selected="selected"':'fr')?>>English
+								(US)</option>
+						</select> <input type="submit" name="BtnSubmit"
+							class="btn btn-primary pull-right"
+							value="<?php echo $this->translate('login');?>"> <label
+							class="remember-me"><input name="txtRemember" value="autoLogin"
+							type="checkbox" />&nbsp;<?php echo $this->translate('remember-me');?></label>
+						<div class="clearfix"></div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<p>
+				<a href="<?php echo $this->url(array('controller'=>'account','action'=>'recovery','lang'=>$this->translate('lang')));?>"><?php echo $this->translate('recoveryAccount');?></a>
+			</p>
+		</div>
+	</div>
+</div>
+
+
+<script>
+$('#languageSwitch').change(function() {
+    window.location = 'http://<?php echo $_SERVER['SERVER_NAME'];?><?php echo $this->baseUrl(); ?>/' + $(this).val() + '/index/index';
+});
+</script>
