@@ -1,0 +1,53 @@
+<!-- content --> 
+<form method="post"  action="<?php echo $this->url(array('controller'=>'account','action'=>'newpassword'));?>" id="validate">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="dialog span6">
+				<h2>Reset your password</h2>
+				<!-- box -->
+				<div class="widget fluid">
+					<div class="whead">
+						<h6>Input fields</h6>
+						<div class="clear"></div>
+					</div>
+					<!-- input -->
+					<div class="formRow">
+						<div class="grid3">
+							<label>New password: </label>
+						</div>
+						<div class="grid9">
+							<input type="password" id="" name="PasswordReset"
+								class="validate[required]">
+						</div>
+						<div class="clear"></div>
+					</div>
+					<!-- end input -->
+
+					<!-- input -->
+					<div class="formRow">
+						<div class="grid3">
+							<label>confirm password: </label>
+						</div>
+						<div class="grid9">
+							<input type="password" id="" name="ConfirmPasswordReset"
+								class="validate[required,equals[password]]">
+						</div>
+						<div class="clear"></div>
+					</div>
+					<!-- end input -->
+
+					<div class="formRow">
+						<input type="hidden"  name="GetEmail" value="<?php echo $this->getEmail;?>" />
+						<input type="hidden"  name="GetConfirm" value="<?php echo $this->confirm;?>" />
+						<input type="submit" class="buttonM bBlack formSubmit"
+							value="Submit" name="SubmitAddNewPassword">
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!-- end box -->
+
+			</div>
+		</div>
+	</div>
+</form>
+<!-- end content -->

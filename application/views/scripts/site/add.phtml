@@ -1,0 +1,411 @@
+<?php
+$javascript = '';
+$cssScript = '<style>.formRow{padding: 5px 16px;}#main8 .widget{margin-top: 15px;}label.error{margin:0;}</style>';
+$pageTitle = 'Site';
+$content = $this->controller . '/' . $this->action . '.phtml';
+require_once TMP_USER_PATH;
+?>
+<div id="contentdata">
+	<div class="wrapper">		
+			<form method="post"	action="<?php echo $this->url(array('controller'=>'Site','action'=>'add'));?>" id="usualValidate" name="usualValidate" enctype="multipart/form-data">
+                <div id="main8" class="formRow fluid">
+                    <!-- main grid8 -->
+					<div class="grid12">                        
+                            <!-- form inside -->
+                            <div class="formRow fluid">
+                                <!-- form create -->
+                                <div class="widget grid7">
+                                    <div class="body">
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitename')?>:<span class="req">*</span></label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_sitename" class="required" id="txt_sitename" />                                            
+                    					</div>
+					
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitedescription')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_sitediscription" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitecodefunction')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_sitecodefunction" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('siteaddress')?>:<span class="req">*</span></label>
+                    					</div>
+                    					<div class="grid8">
+                    						<div id="addresss"><input type="text" class="required" value="" name="txt_siteaddress1" placeholder="<?php echo $this->translate('googlemap')?>" /></div>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitecity')?>:<span class="req">*</span></label>
+                    					</div>
+                    					<div class="grid8">
+                    						<div id="states"><input type="text" class="required" value="" name="txt_sitecity" placeholder="<?php echo $this->translate('googlemap')?>" /></div>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitezipcode')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_sitezipcode" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitetype')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<select id="typeselect" name="txt_sitetype">
+                        						<option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+                        						<?php 
+                        							if(count($this->RefComType)!=0){
+                        							 foreach($this->RefComType as $comType){
+                        						?>				
+                        						<option value="<?php echo $comType['ref_code_lib'];?>"><?php echo $comType['ref_code_lib'];?></option>
+                        						<?php 
+                        							}
+                        						   }
+                        						?>
+                   						   </select>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitestatus')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<select id="statusselect" name="txt_sitestatus">
+                    							<option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+                    						<?php 
+                    							if(count($this->RefStatus)!=0){
+                    							 foreach($this->RefStatus as $status){
+                    						?>				
+                    						<option value="<?php echo $status['ref_code_lib'];?>"><?php echo $status['ref_code_lib'];?></option>
+                    						<?php 
+                    							}
+                    						   }
+                    						?>
+                    						</select>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('organisme')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						
+                    						<select name="txt_Company">
+                    						  <option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+                    						  <?php 
+                    							if(count($this->CompanyName)!=0){
+                    							 foreach($this->CompanyName as $status){
+                    						?>				
+                    						<option value="<?php echo $status['Com_Id'];?>"><?php echo $status['Com_Name'];?></option>
+                    						<?php 
+                    							}
+                    						   }
+                    						?>
+                    						</select>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label>Site GPS Latit</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_gpslatit" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitegpslong')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_gpslong" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label>Site GPS Alt:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_gpsalt" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitegpsdatetime')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_gpsdatetime" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label>GASCT</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<input type="text" value="" name="txt_gasct" />
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('referencecode')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<select id="referenceselect" name="txt_referencecode">
+                    							<option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+                    						<?php 
+                    							if(count($this->RefCode)!=0){
+                    							 foreach($this->RefCode as $code){
+                    						?>				
+                    						<option value="<?php echo $code['ref_code_lib'];?>"><?php echo $code['ref_code_lib'];?></option>
+                    						<?php 
+                    							}
+                    						   }
+                    						?>
+                    
+                    						</select>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="formRow fluid">
+                                        <div class="grid4">
+                    						<label><?php echo $this->translate('sitelevel')?>:</label>
+                    					</div>
+                    					<div class="grid8">
+                    						<select id="changeOnSelect" name="txt_sitlevel">
+                    							<option value="2">---- <?php echo $this->translate('selectone')?> ----</option>
+                    						<?php 
+                    							if(count($this->RefLevel)!=0){
+                    							 foreach($this->RefLevel as $level){
+                    						?>				
+                    						<option value="<?php echo $level['ref_code_lib'];?>"><?php echo $level['ref_code_lib'];?></option>
+                    						<?php 
+                    							}
+                    						   }
+                    						?>
+                    						</select>
+                    						<script> 
+                    								$('#changeOnSelect').change(function(){
+                    								        $('.showOnSelect').hide();
+                    								        $('#' + $(this).val()).show();
+                    								 });
+                    						</script>
+                    					</div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div id="1" class="showOnSelect" style="display: none;">
+                                        <h6 style="display: block; font-size: 12px; font-weight: bold; padding: 8px 14px 7px; text-align: center; color: #2E6B9B;">Hierarchie Site</h6>
+                                        <div class="formRow fluid">
+                                            <div class="grid4">
+                        						<label>Code Function: </label>
+                        					</div>
+                        					<div class="grid8">
+                        						<input type="text" value="" name="txt_hcodefuntion" />
+                        					</div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="formRow fluid">
+                                            <div class="grid4">
+                        						<label>Secondaire: </label>
+                        					</div>
+                        					<div class="grid8">
+                        						<input type="text" value="" name="txt_hsecondaire" />
+                        					</div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="formRow fluid">
+                                            <div class="grid4">
+                        						<label>Modify Date: </label>
+                        					</div>
+                        					<div class="grid8">
+                        						<input type="text" value="" name="txt_hmodifydate" />
+                        					</div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- end form create -->
+                                <!-- Google map -->
+                                <div class="widget grid5">
+                                    <style>
+                            		.map {
+                            			height: 647px;
+                            			width: 100%;
+                            		}
+                            		.ui-dialog
+                            		{
+                            			background:#fff;
+                            			border:1px solid #ddd;
+                            			padding:5px;
+                            		}
+                            		.ui-dialog-content {height:10px!important;}
+                            		</style>
+                                    <script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/modernizr.min.js"></script>
+                                    <div id="map_canvas" class="map rounded"></div>
+                                    <div id="dialog"></div>
+                                    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>                         		
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/underscore-1.2.2/underscore.min.js"></script>
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/backbone-0.5.3/backbone.min.js"></script>
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/prettify/prettify.min.js"></script>
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/demo.js"></script>
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/jquery.ui.map.js"></script>
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/jquery.ui.map.services.js"></script>
+                            		<script type="text/javascript" src="<?php echo $this->baseUrl ()?>/data/gmap/js/jquery.ui.map.extensions.js"></script>
+                            		<script type="text/javascript"> 
+                                           <?PHP
+                                            $client  = @$_SERVER['HTTP_CLIENT_IP'];
+                                            $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+                                            $remote  = $_SERVER['REMOTE_ADDR'];
+                                            $result  = "France";
+                                            if(filter_var($client, FILTER_VALIDATE_IP))
+                                            {
+                                                $ip = $client;
+                                            }
+                                            elseif(filter_var($forward, FILTER_VALIDATE_IP))
+                                            {
+                                                $ip = $forward;
+                                            }
+                                            else
+                                            {
+                                                $ip = $remote;
+                                            }
+                                        
+                                            $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+                                        
+                                            if($ip_data && $ip_data->geoplugin_countryName != null)
+                                            {
+                                                $result = $ip_data->geoplugin_countryName;
+                                            }
+                                            else 
+                                            {
+                                                $result;
+                                            }
+                                        $url = file_get_contents('http://maps.google.com/maps/geo?q='.$result);
+                                        $geo = explode('[', $url);
+                                        $geo = explode(']', $geo[2]);
+                                        $geo = explode(',', $geo[0]);                                        
+                                        ?>
+                                        var mobileDemo = { 'center': '<?php echo $geo[1];?>,<?php echo $geo[0];?>', 'zoom': 10 };                                    
+                            				demo.add(function() {
+                            					$('#map_canvas').gmap({'center': mobileDemo.center, 'zoom': mobileDemo.zoom, 'disableDefaultUI':true, 'callback': function(map) {
+                            						var self = this;
+                            						self.set('openDialog', function(marker) {
+                            							$('#dialog'+marker.__gm_id).dialog({'modal':true, 'title': 'Edit and save point', 'buttons': { 
+                            								'No': function() { $(this).dialog('close'); marker.setMap(null); return false; },
+                            								'Save': function() { $(this).dialog('close'); return false; }
+                            							}});
+                            						});
+                            						self.set('findLocation', function(location, marker) {
+                            							self.search({'location': location}, function(results, status) {
+                            								if ( status === 'OK' ) {
+                            									$.each(results[0].address_components, function(i,v) {
+                            										if ( v.types[0] == "administrative_area_level_1" || v.types[0] == "administrative_area_level_2" ) {
+                            											$('#state'+marker.__gm_id).val(v.long_name);
+                            										} else if ( v.types[0] == "country") {
+                            											$('#country'+marker.__gm_id).val(v.long_name);
+                            										}
+                            									});
+                            									marker.setTitle(results[0].formatted_address);
+                            									$('#address'+marker.__gm_id).val(results[0].formatted_address);
+                            									self.get('openDialog')(marker);
+                            								}
+                            							});
+                            						});
+                            						$(map).click( function(event) {
+                            							self.addMarker({'position': event.latLng, 'draggable': true, 'bounds': false}, function(map, marker) {
+                            								$('#states').html('<input type="text" id="state'+marker.__gm_id+'" class="txt" name="txt_sitecity" value=""/>');
+                            								$('#addresss').html('<input type="text" id="address'+marker.__gm_id+'" class="txt" name="txt_siteaddress1" value=""/>');
+                            								$('#dialog').append('<form id="dialog'+marker.__gm_id+'" method="get" action="/" style="display:none;">Do you want to save?</form>');
+                            								self.get('findLocation')(marker.getPosition(), marker);
+                            							}).dragend( function(event) {
+                            								self.get('findLocation')(event.latLng, this);
+                            							}).click( function() {
+                            								self.get('openDialog')(this);
+                            							})
+                            						});
+                            					}});
+                            				}).load();                                       	
+                                    </script> 
+                                </div>
+                                <!-- end Google map -->
+                                <div class="clear"></div>
+                            </div>
+                            <!-- end form inside -->
+                            <div class="formRow fluid">
+                                <!--<div class="widget grid12">
+                                    12
+                                </div>-->
+                                <div class="clear"></div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!-- end main grid8 -->  
+                    <!-- left grid4                 
+                    <div class="widget grid4" style="margin-top: 20px;">
+                        <div class="body" align="center">
+                            <img src="<?php echo $this->baseUrl ()?>/images/sitetest/00/01(1).gif" alt="" style="width: 100%; margin-bottom:30px" />
+                            <a href="<?php echo $this->baseUrl ()?>/images/sitetest/00/01(5).jpg" class="lightbox" rel="group"><img src="<?php echo $this->baseUrl ()?>/images/sitetest/01(5).jpg" alt="" /></a>
+                            <a href="<?php echo $this->baseUrl ()?>/images/sitetest/00/01(2).jpg" class="lightbox" rel="group" style="margin: 0 10px;"><img src="<?php echo $this->baseUrl ()?>/images/sitetest/01(2).jpg" alt="" /></a>
+                            <a href="<?php echo $this->baseUrl ()?>/images/sitetest/00/01(3).jpg" class="lightbox" rel="group" style="margin-right: 10px;"><img src="<?php echo $this->baseUrl ()?>/images/sitetest/01(3).jpg" alt="" /></a>
+                            <a href="<?php echo $this->baseUrl ()?>/images/sitetest/00/01(4).jpg" class="lightbox" rel="group"><img src="<?php echo $this->baseUrl ()?>/images/sitetest/01(4).jpg" alt="" /></a>
+                        </div>
+                        <div id="uploader">You browser doesn't have HTML 4 support.</div>
+                    </div>
+                    left grid4 --> 
+                    
+                    
+                    <!-- The end Hierarchie_Site -->    				
+                    <div class="clear"></div>
+                </div>
+                <!-- end <div class="formRow"> -->
+                <div class="formRow">
+    					<input class="buttonS bRed" type="submit" value="<?php echo $this->translate('cancel')?>" />
+                        <input class="buttonS bBlue" type="submit" name="AddSubmit" value="<?php echo $this->translate('submit')?>" />
+    					<div class="clear"></div>
+    				</div>
+			</form>
+	</div>
+</div>
+<script>
+function validateForm()
+{
+    var u=document.forms["usualValidate"]["txt_sitename"].value;
+if (u==null || u=="")
+  {
+  $('.txt_sitename').show();
+  return false;
+  }
+}
+</script>

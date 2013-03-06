@@ -1,0 +1,111 @@
+<?php
+    $javascript ='';
+    $cssScript = '';
+    $pageTitle = 'Type Equipement';
+    $content = $this->controller.'/'.$this->action.'.phtml';
+    $breadLinks = '<ul><li><a title="" href="'.$this->baseUrl ().'/'.$this->translate('lang').'/'.$this->controller.'/add"><i class="icos-add"></i><span>'.$this->translate('create').'</span><strong></strong></a></li></ul>';
+    require_once TMP_USER_PATH;
+?>
+<script type="text/javascript">
+	$(document).ready(function(){
+    $("#research").hide();
+	$('#advancedsearch').click(function(){
+	$("#research").slideToggle();
+	$("#research").show();
+	});
+
+});
+</script>
+<div id="contentdata">
+<div class="wrapper">
+<!--  dTable checkAll tMedia -->
+<form method="post" action="<?php echo $this->url(array("action"=>"delete")); ?>" id="myForm">
+	<div class="widget check">
+            <div class="whead"><span class="titleIcon"><input type="checkbox" id="titleCheck" name="titleCheck" /></span><h6><?php echo $this->translate('viewtypeequipement')?></h6><div class="clear"></div></div>
+            <div id="dyn2" class="shownpars">
+                <table cellpadding="0" cellspacing="0" width="100%" class="dTable tDefault checkAll tMedia" id="checkAll">
+                <thead>
+                    <tr>
+                        <td><img src="<?php echo $this->baseUrl();?>/images/elements/other/tableArrows.png" alt="" /></td>
+                        <td class="sortCol"><div>No&nbsp;<?php echo $this->translate('reference')?><span></span></div></td>
+                        <td class="sortCol"><div><?php echo $this->translate('companyname')?><span></span></div></td>
+                        <td class="sortCol"><div>Description<span></span></div></td>
+                        <td class="sortCol"><div>Controles Visuels<span></span></div></td>
+                        <td class="sortCol"><div><?php echo $this->translate('maintenance')?><span></span></div></td>
+                        <td width="130" class="sortCol"><div>Date<span></span></div></td>
+                        <td width="50">Actions</td>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="8">
+                            <div class="itemActions">
+                                <select>
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+                                    <option value="Delete"><?php echo $this->translate('delete')?></option>
+                                </select>
+                            </div>
+                            <input  style="margin-top: 6px; margin-left: 5px; height: 28px;" class="tablectrl_medium bDefault" type="submit" id="BtnApply" name="BtnApply" value="<?php echo $this->translate('apply')?>"/>
+                      
+                            
+
+                        </td>
+                    </tr>
+                </tfoot>
+                    
+                            <script>
+                            /*function deleteTypeEquipement1(Deleteid) {
+                            	var conf = confirm("Are you sure you want to delete the item?");
+
+                            	if(conf) {
+                            		$('.row<?php echo $GetRows['Type_id'];?>').css("background-color","red").fadeOut(1000);
+                            	    $.ajax({
+                            	        dataType: 'json',
+                            	        url: '<?php echo $this->url(array("controller"=>"Typeequipement","action"=>"delete"))?>',
+                            	        type: 'POST',
+                            	        data: {process:1,id:<?php echo $GetRows['Type_id']; ?>},
+                            	        cache:false,
+                            	        success: function (response) {
+                                	    window.location.href='<?php echo $this->url(array("controller"=>"Typeequipement","action"=>"index"))?>';
+                            	        
+                            	        }
+                            	    });
+                            	}
+
+                            	}*/
+                            </script>
+                <tbody>
+                 <?php 
+                  if(count($this->PassResultToview)!=0){
+                     foreach ($this->PassResultToview as $GetRows){
+                ?>
+                    <tr class="row<?php echo $GetRows['Type_id']?>">
+                        <td><input type="checkbox" name="checkRow[]" value="<?php echo $GetRows['Type_id']; ?>"/></td>
+                        <td>00<?php echo $GetRows['Type_id'];?></td>
+                        <td><?php echo $GetRows['Type_name'];?></td>
+                        <td class="textL"><?php echo $GetRows['Type_description'];?></td>
+                        <td>STALETL<?php //echo $GetRows['Type_modifdate'];?></td>
+                        <td>CONTROL LES<?php //echo $GetRows['Type_modifdate'];?></td>
+                        <td><?php echo $GetRows['Type_createdate'];?></td>
+                        <td class="tableActs noBorderB" align="center">
+                            <a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/edit?process=edit&&id=<?php echo $GetRows['Type_id']; ?>" class="tablectrl_small bBlue tipS" original-title="<?php echo $this->translate('edit')?>"><span class="iconb" data-icon="&#xe1db;"></span></a>
+                            <a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/delete?process=delete&&id=<?php echo $GetRows['Type_id']; ?>" class="tablectrl_small bRed tipS" original-title="<?php echo $this->translate('remove')?>" onclick="return confirm('<?php echo $this->translate('areyousure') ?>')"><span class="iconb" data-icon="&#xe136;"></span></a>
+                            
+                        </td>
+					
+                    </tr>
+					 <?php 
+                  }
+                 }
+                ?>
+                </tbody>
+               	
+            </table>
+			
+            </div>
+
+            <div class="clear"></div> 
+        </div> 
+	</form>
+</div>
+</div>

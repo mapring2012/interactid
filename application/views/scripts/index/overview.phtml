@@ -1,0 +1,96 @@
+<?php
+    $javascript ='';
+    $cssScript = '<style>.widget .body{background:#fff;padding:0;}.widget{border:1px solid #ddd;}
+    td:first-child { background:#eee}td:first-child + td { font-weight:bold;background:#fff;}background:#eee}td:first-child + td { font-weight:bold;background:#fff;}td:first-child + td + td { background:#eee;}td:first-child + td + td + td{ font-weight:bold;background:#fff;}#map_canvas {height: 400px;width: 100%;}</style>';
+    $pageTitle = $this->translate('overview');
+	$content = $this->controller.'/'.$this->action.'.phtml';
+    $breadLinks = '<ul><li><a title="" href="'.$this->url(array('Controller' => 'index', 'action' => 'adduser')).'"><i class="icos-add"></i><span>'.$this->translate('create').'</span><strong></strong></a></li></ul>';
+    require_once TMP_USER_PATH;    
+?>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<?php  foreach ($this->UserOverView as $Values):?>
+<div style="padding-top: 25px; text-align: right; margin-right: 30px;">
+    <a class="buttonS bRed" href="<?php echo  $this->url(array('Controller'=>'index','action'=>'administrator'));?>"><?php echo $this->translate('back')?></a>
+    <a class="buttonS bBlue" href="<?php echo  $this->url(array('Controller'=>'index','action'=>'edit'));?>?process=edit&&id=<?php echo $Values['User_id']?>"><?php echo $this->translate('edit')?></a>
+</div>
+<div id="contentdata"> 
+    <div class="wrapper">
+        <div class="fluid">
+            <div class="widget grid12">       
+                <ul class="tabs">
+                    <li class="activeTab"><a href="#tabb1"><?php echo $this->translate('overview')?></a></li>
+                </ul>
+                
+                <div class="tab_container">
+                    <div class="tab_content" id="tabb1" style="display: block;">
+                    <div class="widget">
+                        <div class="body">
+                        <table width="100%" cellspacing="0" cellpadding="0" class="tLight noBorderT">
+                      
+                          <input type="hidden" name="hiddenID" value="<?php echo $Values['User_Firstname'];?>" />
+                            <tbody>
+                                 <tr>
+                                    <td width="200"><?php echo $this->translate('firstname')?></td>
+                                    <td width="600"><?php echo $Values['User_titre'];?> <?php echo $Values['User_Firstname'];?></td>                                   
+                                    <td width="200"><?php echo $this->translate('mobilephone')?></td>
+                                    <td width="600"><?php echo $Values['User_Mobilephone'];?></td> 
+                                </tr>
+                                <tr>
+                                   <td width="200"><?php echo $this->translate('lastname')?></td>
+                                   <td width="600"><?php echo $Values['User_Lastname'];?></td>                                   
+                                   <td width="200"><?php echo $this->translate('telephone')?></td>
+                                    <td width="600"><?php echo $Values['User_Officephone'];?></td>                                
+                                </tr>                                
+                                <tr>
+                                   <td width="200"><?php echo $this->translate('companytype')?></td>
+                                   <td width="600"><?php echo $Values['User_fonction'];?></td>
+                                   <td><?php echo $this->translate('createdate')?></td>
+                                    <td><span><?php echo $Values['User_createdate'];?></span></td>
+                                </tr>                               
+                                
+                                <tr>
+                                    <td width="200"><?php echo $this->translate('email')?></td>
+                                    <td width="600"><?php echo $Values['User_Mail'];?></td>                                       
+                                    <td><?php echo $this->translate('modifydate')?></td>
+                                    <td><span><?php echo $Values['User_modifdate'];?></span></td>                                    
+                                </tr>                               
+                                <tr>     
+                                    <td width="200"><?php echo $this->translate('status')?></td>
+                                    <td width="600"><?php
+                                    if($Values['User_Statut']=='Actif')
+                                    {
+                                        $ClassStatut = 'label-success';
+                                    }
+                                    else if($Values['User_Statut']=='Suspendu')
+                                    {
+                                        $ClassStatut = 'label-warning';
+                                    }
+                                    else if($Values['User_Statut']=='Inactif')
+                                    {
+                                        $ClassStatut = 'label-important';
+                                    }
+                                    else
+                                    {
+                                       $ClassStatut = ''; 
+                                    }
+                                    ?>
+                                    <span class="label <?php echo $ClassStatut;?>"><?php echo $Values['User_Statut'];?></span></td>
+                                    <td width="200"><?php echo $this->translate('image')?></td>
+                                    <td><img style="width: 80px; height:80px;" src="<?php echo $this->baseUrl ()?>/data/uploads/thumb/<?php echo $Values['User_Photo'];?>"/></td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                        <?php endforeach;?>
+                        </div>
+                    </div>                      
+                    <!-- Photo Gallary -->
+                    <!-- end Photo Gallary -->
+                </div>
+             <!-- end  formRow -->
+
+                </div>	
+                <div class="clear"></div>		 
+            </div>                
+        </div>
+    </div>
+</div>

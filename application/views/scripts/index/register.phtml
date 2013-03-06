@@ -1,0 +1,370 @@
+<?php
+    $javascript ='';
+    $cssScript = '<style>.formRow{padding: 5px 16px;}#main8 .widget{margin-top: 15px;}.cuser {margin:40px 0 15px 0}
+.adduser {font-size:20px;float:right;}
+.addusertxt {padding: 0 0 0 5px;
+ font-size: 16px;
+    font-weight: bold;
+    line-height: 23px;
+    margin-left: 0;
+    padding: 0 5px;
+    text-decoration: none;
+    text-shadow: 1px 1px #EFEFEF;
+}
+.registerform .widget {margin-top: 0;}
+.cshowOnClick {display:none;}
+.OshowOnClick {display:none;}
+.open {display:block!important;}
+div.buttonS {cursor: hand; cursor: pointer;}
+.inputOnShow input, .inputOnShow .selector, .uploader{border:1px solid #00a8ff!important;}
+.buttonS span{margin:0;}
+.ConShowMore, .OonShowMore {margin-right:15px;}
+</style>';
+    $pageTitle = 'Subscription';
+    $content = $this->controller.'/'.$this->action.'.phtml';
+    require_once TMP_LOGIN_PATH;
+?>
+<?php
+// for redirect page
+$home = $_SERVER ['REQUEST_URI'];
+$current = $this->baseUrl () . '/';
+$lang = Zend_Controller_Front::getInstance()->getRequest()->getParam('lang');
+if ($home == $current) 
+{
+	if (isset ( $_SESSION ['UserSession'] )) {
+		$pageRedirect = 'index/dashboard';
+	}
+	else
+	{
+		$pageRedirect = 'index/index';
+	}
+?>
+<script type="text/javascript">document.location.href="<?php echo $this->baseUrl();?>/<?php echo $lang;?>/<?php echo $pageRedirect;?>"</script>
+<?php
+exit();
+}
+// end for redirect page
+
+if (!isset ( $_SESSION ['UserSession'] )) {
+?>
+<div class="registerform">
+    <div class="fluid">       
+            <form name="registerForm" onsubmit="return validateForm()" enctype="multipart/form-data" id="usualValidate" class="main" method="post" action="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/register">
+            
+            <!-- Contact Information -->
+            <div class="cuser"> 
+                <div class="addusertxt"><span class="icos-user"></span><?php echo $this->translate('contactinformation')?></div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+                <div class="widget">                    
+                    <div class="body">
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('title')?>:</label></div>
+                            <div class="grid9">
+                                <select name="txttitle" id="txttitle">
+                                <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+                                <?php 
+                                          if(count($this->getgender)!=0){
+                                          foreach ($this->getgender as $rows){
+                                        ?>
+                                          <option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                                        <?php 
+                                          }
+                                          }
+                                       ?>
+                                </select>
+                                <label for="txttitle" class="error txttitleLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3" style="text-align: right;"><label><?php echo $this->translate('firstname')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="required" name="txtfirstname" id="txtfirstname"/></div><div class="clear"></div>           
+                        </div>
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('lastname')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="required" name="txtlastname" id="txtlastname"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('username')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="required" name="txtusername" id="txtusername"/></div><div class="clear"></div>
+                        </div>
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('password')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="password" class="required" name="txtpassword" id="txtpassword"/></div><div class="clear"></div>
+                        </div>
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('confirmpassword')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="password" class="required" name="repeatPass" id="repeatPass"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('email')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="required" name="txtemail" id="txtemail"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('telephone')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="required" name="txtphone" id="txtphone"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow cshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('function')?>:</label></div>
+                            <div class="grid9">
+                                <select name="txtfunction" id="txtfunction">
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+                                     <?php 
+                                          if(count($this->getCodeFunction)!=0){
+                                          foreach ($this->getCodeFunction as $rows){
+                                        ?>
+                                          <option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                                        <?php 
+                                          }
+                                          }
+                                       ?>
+                                </select>
+                                <label for="txtfunction" class="error txtfunctionLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow cshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('userlevel')?>:</label></div>
+                            <div class="grid9">
+                                <select name="txtuserlevel" id="txtuserlevel">
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+                                     <?php 
+                                          if(count($this->getUserLevel)!=0){
+                                          foreach ($this->getUserLevel as $rows){
+                                        ?>
+                                          <option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                                        <?php 
+                                          }
+                                          }
+                                       ?>
+                                </select>
+                                <label for="txtuserlevel" class="error txtuserlevelLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div><div class="clear"></div>
+                        </div>
+                        <div class="formSubmit">
+                            <div class="buttonS bDefault mb10 mt5 ConShowMore"><span class="cshowOnClick open"><?php echo $this->translate('showmore')?>...</span><span class="cshowOnClick"><?php echo $this->translate('showless')?></span></div>
+                        </div>
+                        <div class="clear"></div>
+                        </div>
+                    </div>
+                    <!-- end Contact Information -->
+                    
+                    
+                    <!-- Partner Experience -->
+                    <div class="cuser"> 
+                        <div class="addusertxt"><span class="icos-home2"></span><?php echo $this->translate('companyinformation')?></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="widget">
+                        <div class="body">
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('companyname')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="required" name="txtcompanyname" id="txtcompanyname"/></div><div class="clear"></div>
+                        </div>                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('companycountry')?>:<span class="req">*</span></label></div>
+                                <div class="grid9">
+                                <select name="txtcountry" id="txtcountry" class="required">
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+                                    <option value="Cambodia">Cambodia</option> 
+                                    <option value="Cameroon">Cameroon</option> 
+                                    <option value="Canada">Canada</option>
+                                    <option value="Cape Verde">Cape Verde</option> 
+                                    <option value="Cayman Islands">Cayman Islands</option> 
+                                    <option value="Central African Republic">Central African Republic</option> 
+                                    <option value="Chad">Chad</option> 
+                                    <option value="Chile">Chile</option> 
+                                    <option value="China">China</option> 
+                                    <option value="Christmas Island">Christmas Island</option> 
+                                    <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option> 
+                                    <option value="Colombia">Colombia</option> 
+                                    <option value="Comoros">Comoros</option> 
+                                    <option value="Congo">Congo</option> 
+                                    <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option> 
+                                    <option value="Cook Islands">Cook Islands</option> 
+                                    <option value="Costa Rica">Costa Rica</option> 
+                                    <option value="Cote D'ivoire">Cote D'ivoire</option> 
+                                    <option value="Croatia">Croatia</option> 
+                                    <option value="Cuba">Cuba</option> 
+                                    <option value="Cyprus">Cyprus</option> 
+                                    <option value="Czech Republic">Czech Republic</option> 
+                                    <option value="Denmark">Denmark</option> 
+                                    <option value="Djibouti">Djibouti</option> 
+                                    <option value="Dominica">Dominica</option> 
+                                    <option value="Dominican Republic">Dominican Republic</option> 
+                                    <option value="Ecuador">Ecuador</option> 
+                                    <option value="Egypt">Egypt</option> 
+                                    <option value="El Salvador">El Salvador</option> 
+                                    <option value="Equatorial Guinea">Equatorial Guinea</option> 
+                                    <option value="Eritrea">Eritrea</option> 
+                                    <option value="Estonia">Estonia</option> 
+                                    <option value="Ethiopia">Ethiopia</option> 
+                                    <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option> 
+                                    <option value="Faroe Islands">Faroe Islands</option> 
+                                    <option value="Fiji">Fiji</option> 
+                                    <option value="Finland">Finland</option> 
+                                    <option selected="selected" value="France">France</option> 
+                                    <option value="French Guiana">French Guiana</option> 
+                                    <option value="French Polynesia">French Polynesia</option> 
+                                    <option value="French Southern Territories">French Southern Territories</option> 
+                                    <option value="Gabon">Gabon</option> 
+                                    <option value="Gambia">Gambia</option> 
+                                    <option value="Georgia">Georgia</option> 
+                                    <option value="Germany">Germany</option> 
+                                    <option value="Ghana">Ghana</option> 
+                                    <option value="Gibraltar">Gibraltar</option> 
+                                    <option value="Greece">Greece</option> 
+                                </select>
+                                <label for="txtcountry" class="error txtcountryLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div>
+                            <div class="clear"></div>
+                            
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('companycity')?>:</label></div>
+                            <div class="grid9"><input type="text" class="inputOnShow" name="txtcity" id="txtcity"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('companycodepostal')?>:</label></div>
+                            <div class="grid9"><input type="text" name="txtzipcode" id="txtzipcode"/></div><div class="clear"></div>
+                        </div>
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('companyaddress1')?>:</label></div>
+                            <div class="grid9"><input type="text" name="txtaddress1" id="txtaddress1"/></div><div class="clear"></div>
+                        </div>
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('companytelephone')?>:</label></div>
+                            <div class="grid9"><input type="text" name="txtofficephone" id="txtofficephone"/></div><div class="clear"></div>
+                        </div>                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('companylogo')?>:</label></div>
+                            <div class="grid9"><input type="file" class="fileInput" id="fileInput" name="fileupload"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('RaisonSocial')?>:</label></div>
+                            <div class="grid9"><input type="text" name="txtcompanyraisonsocial" id="txtcompanyraisonsocial"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('companysiret')?>:</label></div>
+                            <div class="grid9"><input type="text" name="txtcompanysiret" id="txtcompanysiret"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('codereference')?>:</label></div>
+                            <div class="grid9">
+                                <select name="txtcompanyreference" id="txtcompanyreference">
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+                                     <?php 
+                                          if(count($this->getReferenceCode)!=0){
+                                          foreach ($this->getReferenceCode as $rows){
+                                        ?>
+                                          <option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_code_lib'];?></option>
+                                        <?php 
+                                          }
+                                          }
+                                       ?>
+    								
+    							</select>
+                                <label for="txtcompanyreference" class="error txtcompanyreferenceLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('companytype')?>:</label></div>
+                            <div class="grid9">
+                                <select name="txtcompanytype" id="txtcompanytype">
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+    								<?php 
+                                          if(count($this->getReferenceCodeCompanyType)!=0){
+                                          foreach ($this->getReferenceCodeCompanyType as $rows){
+                                        ?>
+                                          <option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                                        <?php 
+                                          }
+                                          }
+                                       ?>
+    							</select>
+                                <label for="txtcompanytype" class="error txtcompanytypeLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div><div class="clear"></div>
+                        </div>
+                        
+                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('companylevel')?>:</label></div>
+                            <div class="grid9">
+                                <select name="txtcompanylevel" id="txtcompanylevel">
+                                    <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+    								<?php 
+                                          if(count($this->getCompanyLevel)!=0){
+                                          foreach ($this->getCompanyLevel as $rows){
+                                        ?>
+                                          <option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                                        <?php 
+                                          }
+                                          }
+                                       ?>
+    							</select>
+                                <label for="txtcompanylevel" class="error txtcompanylevelLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>
+                            </div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow inputOnShow OshowOnClick">
+                            <div class="grid3"><label><?php echo $this->translate('companyTVA')?>:</label></div>
+                            <div class="grid9"><input type="text" name="txtvat" id="txtvat"/></div><div class="clear"></div>
+                        </div>                 
+                        
+                        <div class="formSubmit">
+                            <div class="buttonS bDefault mb10 mt5 OonShowMore"><span class="OshowOnClick open"><?php echo $this->translate('showmore')?>...</span><span class="OshowOnClick"><?php echo $this->translate('showless')?></span></div>
+                        </div>
+                        <div class="clear"></div>
+                        
+                        </div>
+                        <div class="clear"></div>                         
+                    </div>
+                    <!-- end Partner Experience -->
+                    
+                    <div class="formRow">
+                            <input type="submit" value="<?php echo $this->translate('submit')?>" class="buttonM bBlue formSubmit" name="SubscriptSubmit" />
+                            <div class="clear" style="margin-bottom: 20px;"></div>
+                    </div>                
+            </form>
+
+<?php }?>
+
+<script>
+$(document).ready(function(){
+	$('.ConShowMore').click(function(){
+	$(".cshowOnClick").toggleClass('open');
+	});
+    
+	$('.OonShowMore').click(function(){
+	$(".OshowOnClick").toggleClass('open');
+	});    
+
+});
+
+
+
+function validateForm()
+{
+
+var t=document.forms["registerForm"]["txtcountry"].value;
+if (t==null || t=="")
+  {
+  $('.txtcountryLabel').show();
+  return false;
+  } 
+}
+</script>
+        </div>
+</div>

@@ -1,0 +1,42 @@
+<?php
+    $javascript ='';
+    $cssScript = '';
+    $pageTitle = 'Recover your account';
+    $content = $this->controller.'/'.$this->action.'.phtml';
+    require_once TMP_LOGIN_PATH;
+?>
+<!-- content -->
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="loginindex">
+			<h2>Having trouble signing in?</h2>
+			<!-- box -->
+			<div class="widget acc">
+				<div class="whead" style="color: rgb(43, 104, 147);">
+					<h6>I don't know my password</h6>
+					<div class="clear"></div>
+				</div>				
+				<div class="menu_body"
+					style="display: block; color: rgb(64, 64, 64);">
+					<div class="formRow">
+					<form method="post" id="validate" class="main">
+                        <fieldset>
+						To reset your password, enter the username you use to sign in to
+						Google. This can be your Gmail address, or it may be another email
+						address you associated with your account. 
+						<div style="display: block; clear: both;"></div>
+						<label for="emailValid"><span class="icos-email"></span>Email address </label>
+						<input type="text" id="emailValid" class="validate[required,custom[email]] span12" name="txtemail" />
+						<div style="height:15px;display:block;"></div>
+						<input type="submit" name="BtnSubmit" class="buttonM bDefault formSubmit" value="<?php echo $this->translate('buttonContinue');?>" />
+						<div style="display: block; clear: both;"></div>
+                        </fieldset>						
+					</form>
+					</div>
+				</div>
+			</div>
+			<!-- end box -->
+		</div>
+	</div>
+</div>
+<!-- end content -->

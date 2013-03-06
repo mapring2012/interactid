@@ -1,0 +1,194 @@
+
+<?php
+$javascript ='';
+$cssScript = '<script type="text/javascript" src="'.$this->baseUrl ().'/theme/default/js/charts/jsapi.js"></script>
+		<script type="text/javascript" src="'.$this->baseUrl ().'/theme/default/js/charts/jquery.gvChart-1.1.min.js"></script>';
+$pageTitle = $this->translate('edituser');
+$cssScript = '<style>.formRow{padding: 5px 16px;}#main8 .widget{margin-top: 15px;}label.error{margin:0;}</style>';
+$content = $this->controller.'/'.$this->action.'.phtml';
+$breadLinks = '<ul><li><a title="" href="'.$this->url(array('Controller' => 'index', 'action' => 'adduser')).'"><i class="icos-add"></i><span>'.$this->translate('create').'</span><strong></strong></a></li></ul>';
+require_once TMP_USER_PATH;
+?>
+
+<!-- ceate company -->
+			<div id="create" class="tab_content">
+				<!-- company content -->
+							<div class="widget">
+                <div class="whead"><h6><?php echo $this->translate('edituser')?></h6><div class="clear"></div></div>
+                <form enctype="multipart/form-data" method="post" action="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/edit">
+                    <fieldset id="w3confirmation" class="step">
+                    
+                      <?php 
+                        if(count($this->gettingUserLists)!=0){
+        					foreach ($this->gettingUserLists as $rowsUsers){
+                      ?>	<input type="hidden" name="idHidden" value="<?php echo $rowsUsers["User_id"]; ?>"/>
+    							<div class="formRow fluid noBorderB">
+                                
+                                
+                                    <div class="grid2"><label><?php echo $this->translate('title')?>:</label></div>
+			                        <div class="grid4">
+			                        	<select name="users_title">
+			                        	 <option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+										<?php 
+										  if(count($this->usertitle)){
+										  	foreach ($this->usertitle as $rows){
+                                            $selected = "selected";
+                   						 ?><option <?php echo ($rowsUsers["User_titre"]==$rows['ref_code_lib'])?$selected:"";?> value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                   						 <?php 
+										  		
+										  	}
+										  }
+										?>
+										</select>
+			                        </div>    						
+			                        
+                                    <div class="grid2"><label><?php echo $this->translate('mobilephone')?>:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php echo $rowsUsers["User_Mobilephone"];?>" name="users_mobilephone" /></div>   
+                                    
+			                        
+			                        <div class="clear"></div>
+		             			</div>
+		             			<div class="formRow fluid noBorderB">
+                                
+                                    <div class="grid2"><label><?php echo $this->translate('firstname')?>:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php echo $rowsUsers["User_Firstname"];?>" name="users_firstname" /></div>
+                                    
+                                    
+                                    
+                                    
+			                        <div class="grid2"><label><?php echo $this->translate('userfunciton')?>:</label></div>
+			                        <div class="grid4">
+			                        <select name="users_fonction">
+											<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+										<?php 
+										  if(count($this->selectCodeFunction)){
+										  	foreach ($this->selectCodeFunction as $rows){
+                   						 ?><option <?php echo ($rowsUsers["User_fonction"]==$rows['ref_code_lib'])?$selected:"";?>  value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                   						 <?php 
+										  		
+										  	}
+										  }
+										?>
+											
+										</select>
+			                        </div>
+			                        <div class="clear"></div>
+		             			</div>
+    							<div class="formRow fluid noBorderB">
+			                        <div class="grid2"><label><?php echo $this->translate('lastname')?>:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php echo $rowsUsers["User_Lastname"];?>" name="users_lastname" /></div>
+                                    
+                                    
+                                    <div class="grid2"><label><?php echo $this->translate('officephone')?>:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php echo $rowsUsers["User_Officephone"];?>" name="users_officephone" /></div>
+                                    
+                                    
+			                        
+			                        <div class="clear"></div>
+		             			</div>
+		             			<div class="formRow fluid noBorderB">
+                                    
+                                    <div class="grid2"><label><?php echo $this->translate('username')?>: </label></div>
+			                        <div class="grid4"><input type="text" value="<?php echo $rowsUsers["User_login"];?>" name="users_name" /></div>
+			                        
+                                    <div class="grid2"><label><?php echo $this->translate('status')?>:</label></div>
+			                        <div class="grid4">
+			                        <select name="users_statut">
+										<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+										<?php 
+										  if(count($this->Userstatus)){
+										  	foreach ($this->Userstatus as $rows){
+                   						 ?><option <?php echo ($rowsUsers["User_Statut"]==$rows['ref_code_lib'])?$selected:"";?> value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_code_lib'];?></option>
+                   						 <?php 
+										  		
+										  	}
+										  }
+										?>	
+									</select>
+			                        </div>
+			                        
+			                        <div class="clear"></div>
+		             			</div>
+								<div class="formRow fluid noBorderB">
+			                        
+                                    <div class="grid2"><label><?php echo $this->translate('password')?>:</label></div>
+			                        <div class="grid4"><input type="password" value="<?php echo $rowsUsers["User_password"];?>" name="users_password" /></div>
+                                    
+                                    <div class="grid2"><label><?php echo $this->translate('userreferencecode')?>:</label></div>
+							 <div class="grid4"><select name="users_refcode">
+								<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+    								<?php 
+										  if(count($this->UserRefCode)){
+										  	foreach ($this->UserRefCode as $rows){
+                   						 ?><option <?php echo ($rowsUsers["User_Refcode"]==$rows['ref_code_lib'])?$selected:"";?> value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_code_lib'];?></option>
+                   						 <?php 
+										  		
+										  	}
+										  }
+										?>	
+							</select>
+							</div>
+                                    
+			                        
+			                        <div class="clear"></div>
+		             			</div>
+						  		<div class="formRow fluid noBorderB">
+			                        
+                                    
+                                    <div class="grid2"><label><?php echo $this->translate('email')?>:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php echo $rowsUsers["User_Mail"];?>" name="users_mail" /></div>
+                                    <div class="grid2">&nbsp;</div>
+                                    <div class="grid3">
+                                        <div class="status" id="status3"></div>
+                                        <div class="formSubmit">
+                                        <a class="buttonS bRed" href="<?php echo  $this->url(array('Controller'=>'index','action'=>'administrator'));?>"><?php echo $this->translate('cancel')?></a>
+                                        <input class="buttonS bBlue" id="close_button" name="btnSaveUpdate" type="submit" value="<?php echo $this->translate('update')?>" />
+                                        <div class="clear"></div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+			                         
+							 <div class="clear"></div>
+		             			</div>
+		             			 
+		             			<?php 
+		             			 $displayStyleNone = "display: none;";
+		             			 $displayStyleBlock = "display:none;";
+		             			?>
+					<div id="Oui" class="showOnSelectuser" style="<?php echo ($rowsUsers["User_level"]=='Oui')?$displayStyleBlock:$displayStyleNone?>"><h6 style="display: block;font-size: 12px;font-weight: bold;
+    padding: 8px 14px 7px;text-align: center;color: #2E6B9B;">Hierarchie Users</h6>
+    							<div class="formRow fluid noBorderB">
+			                        <div class="grid2"><label>Subusers:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php //echo $rowsUsers["huser_sub"];?>"  name="husers_sub"/></div>
+			                        <div class="grid2"><label>Createdate:</label></div>
+			                        <div class="grid4"><input type="text" value="<?php //echo $rowsUsers["huser_Createdate"];?>" name="husers_createdate" /></div>
+			                        <div class="clear"></div>
+					             </div>
+                     </div>
+                     </fieldset>
+                     
+                     
+<!--  *********** Button
+<div class="formRow">
+
+<div class="status" id="status3"></div>
+<div class="formSubmit">
+<a class="buttonS bRed" href="<?php //echo  $this->url(array('Controller'=>'index','action'=>'administrator'));?>"><?php echo $this->translate('cancel')?></a>
+<input class="buttonS bBlue" id="close_button" name="btnSaveUpdate" type="submit" value="<?php echo $this->translate('update')?>" />
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+</div>
+-->
+
+
+                    <?php 
+                        }
+                      }
+                    ?>
+			</form>
+			<div class="data" id="w2"></div>
+		</div>
+				<!-- end company content -->
+			</div>

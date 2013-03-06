@@ -1,0 +1,268 @@
+<?php
+    $javascript ='';
+    $cssScript = '';
+    $pageTitle = 'Organisme';
+    $content = $this->controller.'/'.$this->action.'.phtml';
+    $breadLinks = '<ul><li><a title="" href="'.$this->baseUrl ().'/'.$this->translate('lang').'/'.$this->controller.'/add"><i class="icos-add"></i><span>'.$this->translate('create').'</span><strong></strong></a></li></ul>';
+    require_once TMP_USER_PATH;
+?>
+<style type="text/css">
+.cuser {float:right;margin:20px 0 -20px 0}
+.adduser {font-size:20px;float:right;}
+.addusertxt {float:right;padding: 0 0 0 5px;
+ font-size: 16px;
+    font-weight: bold;
+    line-height: 23px;
+    margin-left: 0;
+    padding: 0 5px;
+    padding-right: 15px;
+    text-decoration: none;
+    text-shadow: 1px 1px #EFEFEF;
+}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $("#research").hide();
+        $("#basic_search").show();
+	$('#advancedsearch').click(function(){
+    $("#basic_search").hide();
+	$("#research").slideToggle();
+	$("#research").show();
+	$("#basicsearch").click(function(){
+		 $("#research").hide();
+         $("#basic_search").show();
+		});
+	});
+});
+</script>
+<div id="contentdata">
+	<div class="wrapper">
+
+		<form method="post"
+			action="<?php echo $this->url(array("action"=>"delete")); ?>"
+			id="SiteForm" name="SiteForm">
+			<div class="tab_container">
+			 <div id="search" class="tab_content">
+		      	<div class="widget fluid tableTabs">
+    				 <div id="basic_search">
+    					<div class="formRow">
+    						<div class="grid1">
+    							<label><?php echo $this->translate('companyname')?>&nbsp;&nbsp;<b>:</b>
+    							</label>
+    						</div>
+    						<div class="grid4">
+    							<input type="text" name="seacrhname" />
+    						</div>
+    						<div class="grid7">
+    							<a href="#" class="buttonM bDefault"><span class="icos-search"></span><span><?php echo $this->translate('search')?></span></a>
+                                <input type="reset" value="<?php echo $this->translate('reset')?>" class="buttonM bDefault"/>
+    							&nbsp;&nbsp;<a href="#"><span id="advancedsearch"><?php echo $this->translate('advancesearch')?></span></a>
+    						</div>
+    						<div class="clear"></div>
+    					</div>
+                    </div>
+                <!-- Advance search-->
+					<div id="research">
+                    <div class="formRow fluid noBorderB">
+							<div class="grid2">
+									<label><?php echo $this->translate('companyname')?>: </label>
+							</div>
+							<div class="grid4">
+								<input type="text" name="searchsociale" />
+							</div>
+							<div class="grid2">
+								<label><?php echo $this->translate('companywebsite')?>: </label>
+							</div>
+							<div class="grid4">
+									<input type="text" name="searchwebsite" />
+							</div>
+							<div class="clear"></div>
+                    </div>
+                       <div class="formRow fluid noBorderB">
+							<div class="grid2">
+								<label><?php echo $this->translate('companyemail')?>: </label>
+							</div>
+							<div class="grid4">
+								<input type="text" name="searchemail" />
+							</div>
+							<div class="grid2">
+								<label><?php echo $this->translate('companyaddress1')?>:</label>
+							</div>
+							<div class="grid4">
+								<input type="text" name="searchaddrees" />
+							</div>
+							<div class="clear"></div>
+                    </div>
+                       <div class="formRow fluid noBorderB">
+							<div class="grid2">
+							     <label>Etat: </label>
+							</div>
+							<div class="grid4">
+								 <input type="text" name="searchstate" />
+							</div>
+							<div class="grid2">
+								<label><?php echo $this->translate('companycodepostal')?>: </label>
+							</div>
+							<div class="grid4">
+							    <input type="text" name="searchcodepostal" />
+							</div>
+							<div class="clear"></div>
+                    </div>
+                    <div class="formRow fluid noBorderB">
+							<div class="grid2">
+							     <label><?php echo $this->translate('companycity')?>:</label>
+							</div>
+							<div class="grid4">
+								<input type="text" name="searchville" />
+							</div>
+							<div class="grid2">
+								<label><?php echo $this->translate('companytelephone')?>:</label>
+							</div>
+							<div class="grid4">
+								<input type="text" name="searchphone" />
+							</div>
+							<div class="clear"></div>
+                    </div>
+                     <div class="formRow fluid noBorderB">
+							<div class="grid2">
+									<label><?php echo $this->translate('companycountry')?>:</label>
+							</div>
+							<div class="grid4">
+								<input type="text" name="search" />
+							</div>
+							<div class="grid2"></div>
+							<div class="grid4"></div>
+							<div class="clear"></div>
+                    </div>
+                    <div class="formRow noBorderB">
+                            <div id="status3" class="status"></div>
+                            <div class="formSubmit">
+                                <a href="#"><span id="basicsearch"><?php echo $this->translate('basicsearch')?></span></a>&nbsp;&nbsp;&nbsp;
+                                <input type="reset" value="<?php echo $this->translate('reset')?>" class="buttonM bRed"/>
+                                <input type="submit" value="<?php echo $this->translate('search')?>" class="buttonM bBlue"/>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                   </div>
+
+                </div>
+                
+            </div>
+            
+            <div class="widget check">
+                    <div class="whead">
+						<span class="titleIcon" style="width: 41px;"> <input
+							type="checkbox" id="titleCheck" name="titleCheck" />
+						</span>
+						<h6><?php echo $this->translate('vieworganisme')?></h6>
+						<div class="clear"></div>
+					</div>
+                    <div id="dyn2" class="shownpars">                    
+                    <table cellpadding="0" cellspacing="0" width="100%"
+						class="dTable tDefault checkAll tMedia" id="checkAll">
+						<thead>
+							<tr>
+								<td><img src="<?php echo $this->baseUrl();?>/images/elements/other/tableArrows.png" alt="" /></td>
+								<td class="sortCol" width="150"><div>
+										N<sup>o</sup>&nbsp;&nbsp;<?php echo $this->translate('reference')?><span></span>
+									</div></td>
+									<td class="sortCol"><div><?php echo $this->translate('companyname')?><span></span>
+									</div></td>
+								<td class="sortCol"><div><?php echo $this->translate('RaisonSocial')?><span></span>
+									</div></td>
+								<td class="sortCol"><div><?php echo $this->translate('companycity')?><span></span>
+									</div></td>
+                                    <td class="sortCol"><div><?php echo $this->translate('contact')?><span></span>
+									</div></td>
+									<td>action</td>
+									
+							
+								
+							</tr>
+						</thead> 
+						<!-- Multiple delete action -->
+                        <tfoot>
+							<tr>
+								<td colspan="8">
+									<div class="itemActions">										
+										<select id="actionSelect" name="multiAction">
+											<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+											<option value="Delete"><?php echo $this->translate('delete')?></option>
+										</select>
+									</div>
+									<input onclick="return confirm('<?php echo $this->translate('areyousure') ?>')" style="margin-top: 6px; margin-left: 5px; height: 28px;" class="tablectrl_medium bDefault" type="submit"  value="<?php echo $this->translate('apply')?>" name="BtnDelOrg" />
+									
+					
+                            </td>
+
+                            <script>
+                           
+
+                            <script >
+					/*
+                            function deleteOrganisme(Deleteid) {
+
+                            	var conf = confirm("Are you sure you want to delete the item?");
+
+                            	if(conf) {
+                            		$('.row<?php echo $GetRows['Type_id'];?>').css("background-color","red").fadeOut(1000);
+                            	    $.ajax({
+                            	        dataType: 'json',
+                            	        url: '<?php echo $this->url(array("controller"=>"Typeequipement","action"=>"delete"))?>',
+                            	        type: 'POST',
+                            	        data: {process:1,id:<?php echo $GetRows['Type_id']; ?>},
+                            	        success: function (response) {
+                            	        
+                            	        }
+                            	    });
+                            	}
+
+
+                            	}
+
+                          	 
+                            }
+				*/
+
+                            </script>
+						</tr>
+						
+						</tfoot>
+                       <!-- Multiple delete action -->
+						<tbody>
+                    <?php 
+                      if(count($this->getfivetable)!=0){
+	   					foreach ($this->getfivetable as $alldata){	   				
+	   				?>
+	   				<tr class="row<?php echo $alldata['comid']?>">
+	   					<td><input type="checkbox" name="checkRow[]" value="<?php echo $alldata['comid'];?>" /></td>
+	   					<td>000<?php echo $alldata['comid'];?></td>	
+	   					<td><a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/overview?actions=overview&id=<?php echo $alldata['comid']; ?>&&userid=<?php echo $alldata['User_id']; ?>"><?php echo $alldata['Com_Name'];?></a></td>
+	   					<td><?php echo $alldata['Com_RaisonSocial'];?></td>
+	   					<td><?php echo $alldata['Com_City'];?></td>
+                        <td><?php echo $alldata['User_login'];?></td>
+                        
+                        <td class="tableActs noBorderB" align="center">
+                            <a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/edit?actions=edit&&id=<?php echo $alldata['comid'];?>" class="tablectrl_small bBlue tipS" original-title="<?php echo $this->translate('edit')?>"><span class="iconb" data-icon="&#xe1db;"></span></a>
+                            <a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/delete?actions=edit&&id=<?php echo $alldata['comid'];?>" class="tablectrl_small bRed tipS" original-title="<?php echo $this->translate('remove')?>" onclick="return confirm('<?php echo $this->translate('areyousure') ?>')"><span class="iconb" data-icon="&#xe136;"></span></a>
+                            
+                        </td>
+                     
+	   				</tr>
+	   				<?php 
+	   					}
+	   				}
+ 					?>
+						</tbody>
+					</table>
+                    </div>
+            </div>
+            
+    	</div>
+</div>
+	<div class="clear"></div>
+ 
+
+	</form>
+</div>
+</div>

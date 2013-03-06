@@ -1,0 +1,175 @@
+<?php
+$javascript = '';
+$cssScript = '<style>.formRow{padding: 5px 16px;}#main8 .widget{margin-top: 15px;}</style>';
+$pageTitle = 'Administrator';
+$content = $this->controller . '/' . $this->action . '.phtml';
+$breadLinks = '<ul><li><a title="" href="'.$this->baseUrl ().'/'.$this->translate('lang').'/'.$this->controller.'/adduser"><i class="icos-add"></i><span>'.$this->translate('create').'</span><strong></strong></a></li></ul>';
+require_once TMP_USER_PATH;
+?>
+<style>
+#mss .nSuccess{
+	font-weight: bold;
+    margin: 0;
+    padding: 0 25px 10px;    
+    text-shadow: 0 1px 0 #FFFFFF;
+    margin-top:18px;
+}
+.cuser {float:right;margin:20px 0 -20px 0}
+.adduser {font-size:20px;float:right;}
+.addusertxt {float:right;padding: 0 0 0 5px;
+ font-size: 16px;
+    font-weight: bold;
+    line-height: 23px;
+    margin-left: 0;
+    padding: 0 5px;
+    text-decoration: none;
+    text-shadow: 1px 1px #EFEFEF;
+}
+</style>
+<div id="contentdata"> 
+<div class="wrapper">
+				<!-- result content -->
+
+<div class="clear"></div>
+    <div class="fluid">
+        <div class="widget check">
+					<div class="whead">
+						<span class="titleIcon"> <input
+							type="checkbox" id="titleCheck" name="titleCheck" />
+						</span>
+						<h6><?php echo $this->translate('seeuser')?></h6>
+						<div class="clear"></div>
+					</div>
+<div id="dyn2" class="shownpars">
+                        <!--
+<a class="tOptions act" title="Options"><img src="<?php echo $this
+		->baseUrl(); ?>/images/icons/options" alt="" /></a>
+-->
+				 <form action="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/delete" method="post">
+					<table cellpadding="0" cellspacing="0" width="100%"class="dTable tDefault checkAll tMedia" id="checkAll">
+						<thead>
+							<tr>
+								<td><img src="<?php echo $this->baseUrl(); ?>/images/elements/other/tableArrows.png" alt="" /></td>
+								<td class="sortCol"><div><?php echo $this->translate('username')?><span></span>
+									</div></td>
+								<td class="sortCol"><div><?php echo $this->translate('useraccount')?><span></span>
+									</div></td>
+								<td class="sortCol"><div><?php echo $this->translate('title')?><span></span>
+									</div></td>
+									
+									<td class="sortCol"><div><?php echo $this->translate('email')?><span></span>
+									</div></td>
+									<td class="sortCol"><div><?php echo $this->translate('telephone')?><span></span>
+									</div></td>
+									
+									<td class="sortCol"><div><?php echo $this->translate('status')?><span></span>
+									</div></td>
+								<td>Action</td>
+							</tr>
+						</thead>
+						<tfoot>
+						
+							<tr>
+								<td colspan="10">
+									<div class="itemActions">
+										<label><?php echo $this->translate('applyaction')?>: </label> 
+										<select id="actionSelect" name="multiAction">
+											<option value="">--------- <?php echo $this->translate('selectone')?> ---------</option>											
+											<option value="<?php echo $this->translate('delete')?>"><?php echo $this->translate('delete')?></option>											
+										</select>
+									</div>
+									<input  style="margin-top: 6px; margin-left: 5px; height: 28px;" class="tablectrl_medium bDefault" type="submit" name="BtnApply" value="<?php echo $this->translate('apply')?>"/>
+								</td>
+							</tr>
+														
+						
+						</tfoot>
+						<?php
+							if (count($this->userManagement) != 0) {
+								foreach ($this->userManagement as $valueUM) {
+						?>
+						 
+						<tbody>
+						
+	   				<tr class="row<?php  echo $valueUM['User_id']; ?>">
+	   					<td><input type="checkbox" name="checkRow[]" value="<?php echo $valueUM['User_id']; ?>" /></td>
+	   					<td><a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/overview?process=overview&id=<?php echo $valueUM['User_id']; ?>" class=""><?php echo $valueUM['User_Firstname']."&nbsp;". $valueUM['User_Lastname']; ?></a></td>
+	   					<td><a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/overview?process=overview&id=<?php echo $valueUM['User_id']; ?>" class=""><?php echo $valueUM['User_login']; ?></a></td>
+	   					<td><?php echo $valueUM['User_titre']; ?></td>
+	   					<td><a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/overview?process=overview&id=<?php echo $valueUM['User_id']; ?>" class=""><?php echo $valueUM['User_Mail']; ?></a></td>
+	   					<td><?php echo $valueUM['User_Mobilephone']; ?></td>
+	   					<td><?php echo $valueUM['User_Statut']; ?></td>
+	   					
+                        <td class="tableActs noBorderB" align="center">
+                            <a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/edit?process=edit&id=<?php echo $valueUM['User_id']; ?>" class="tablectrl_small bBlue tipS" original-title="<?php echo $this->translate('edit')?>"><span class="iconb" data-icon="&#xe1db;"></span></a>
+                            <a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/delete?process=delete&id=<?php echo $valueUM['User_id']; ?>" class="tablectrl_small bRed tipS" original-title="<?php echo $this->translate('remove')?>" onclick="return confirm('<?php echo $this->translate('areyousure') ?>')"><span class="iconb" data-icon="&#xe136;"></span></a>
+                            
+                        </td>
+	   				</tr>
+						
+						</tbody>
+						<?php
+							  }
+							}else{
+								echo "<tr><td colspan='7'>No record select</td></tr>";
+							}
+						?>
+					</table>
+					</form>
+</div>
+				</div>
+
+		<div class="clear"></div>
+</div>
+</div>
+</div>
+        
+        
+
+
+
+
+
+
+<script>
+function validateForm()
+{
+var x=document.forms["createUserForm"]["users_title"].value;
+if (x==null || x=="")
+  {
+  $('.users_titleLabel').show();
+  return false;
+  }
+  
+var x=document.forms["createUserForm"]["users_fonction"].value;
+if (x==null || x=="")
+  {
+  $('.users_fonctionLabel').show();
+  return false;
+  }
+  
+var r=document.forms["createUserForm"]["users_refcode"].value;
+if (r==null || r=="")
+  {
+  $('.users_refcodeLabel').show();
+  return false;
+  }
+  
+var f=document.forms["createUserForm"]["users_level"].value;
+if (f==null || f=="")
+  {
+  $('.users_levelLabel').show();
+  return false;
+  }
+  
+  
+var r=document.forms["createUserForm"]["comId"].value;
+if (r==null || r=="")
+  {
+  $('.comIdLabel').show();
+  return false;
+  }
+  
+
+}
+</script>

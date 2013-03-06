@@ -1,0 +1,30 @@
+<?php
+$javascript ='';
+$cssScript = '<script type="text/javascript" src="'.$this->baseUrl ().'/theme/default/js/charts/jsapi.js"></script>
+		<script type="text/javascript" src="'.$this->baseUrl ().'/theme/default/js/charts/jquery.gvChart-1.1.min.js"></script>';
+$pageTitle = 'Dashboard';
+$content = $this->controller.'/'.$this->action.'.phtml';
+require_once TMP_USER_PATH;
+?>
+<style>
+.nSuccess{
+	font-weight: bold;
+    margin: 0;
+    padding: 0 25px 10px;    
+    text-shadow: 0 1px 0 #FFFFFF;
+    margin-top:20px;
+}
+</style>
+<div id="contentdata">
+<div class="wrapper">
+<div class="nSuccess"><p>Users: &nbsp;<i class="red">Create, edit, activate and deactivate users in Interactid. Create and manage teams and roles, including module- and field-level access.</i></p></div>
+<ul class="middleNavA">
+            <li><a title="Add an article" href="#"><img alt="" src="<?php echo $this->baseUrl();?>/images/icons/color/user.png"><span>User Management</span></a></li>
+            <li><a title="Upload files" href="#"><img alt="" src="<?php echo $this->baseUrl();?>/images/icons/color/issue.png"><span>Team Management</span></a></li>
+            <li><a title="Add something" href="#"><img alt="" src="<?php echo $this->baseUrl();?>/images/icons/color/old-versions.png"><span>Role Management</span></a></li>
+            <li><a title="Messages" href="#"><img alt="" src="<?php echo $this->baseUrl();?>/images/icons/color/administrative-docs.png"><span>Password Management</span></a></li>
+            
+        </ul>
+        <div class="divider"><span></span></div>
+</div>
+</div>

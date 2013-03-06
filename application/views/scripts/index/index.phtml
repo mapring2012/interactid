@@ -1,0 +1,83 @@
+<?php
+    $javascript ='';
+    $cssScript = '<style>body{background:url('.$this->baseUrl ().'/theme/default/images/backgrounds/bg.jpg);}</style>';
+    $pageTitle = 'Login Page';
+    $content = $this->controller.'/'.$this->action.'.phtml';
+    require_once TMP_LOGIN_PATH;
+?>
+<?php
+// for redirect page
+$home = $_SERVER ['REQUEST_URI'];
+$current = $this->baseUrl () . '/';
+$lang = Zend_Controller_Front::getInstance()->getRequest()->getParam('lang');
+if ($home == $current) 
+{
+	if (isset ( $_SESSION ['UserSession'] )) {
+		$pageRedirect = 'index/dashboard';
+	}
+	else
+	{
+		$pageRedirect = 'index/index';
+	}
+?>
+<script type="text/javascript">document.location.href="<?php echo $this->baseUrl();?>/<?php echo $lang;?>/<?php echo $pageRedirect;?>"</script>
+<?php
+exit();
+}
+// end for redirect page
+
+if (!isset ( $_SESSION ['UserSession'] )) {
+?>
+
+<div class="loginindex">
+    <div class="widget" style="margin-bottom: -15px;">
+        <div class="formRow">
+            <h3><?php echo $this->translate('subscribe_now');?></h3><br />
+            <a class="buttonL bGold" href="<?php echo $this->baseUrl();?>/<?php echo $lang;?>/index/register"  style="padding: 15px;display:block;font-size: 18pt; text-align: center;"><?php echo $this->translate('get_started'); ?></a>
+        </div>
+    </div>
+
+
+	<div class="widget">        
+        <!-- <div class="whead"><h6><?php echo $this->translate('Connection');?></h6><div class="clear"></div></div> -->
+	
+		<div class="formRow">
+            <h3><?php echo $this->translate('already_a_member?'); ?></h3><br />				
+	    	<form method="post"	action="<?php echo $this->escape($this->actions);?>" id="validate" class="main">
+						<fieldset>
+						<?php echo $this->translate('welcome-to');?>						
+							<b><?php echo $this->translate('message');?></b>		
+						
+						<p style="color: red;"><?php
+						if (isset ( $_SESSION ['errorBlank'] )) {
+							echo $this->translate ( 'errorBlank' );
+							unset ( $_SESSION ['errorBlank'] );
+						}
+						if (isset ( $_SESSION ['errorIn'] )) {
+							echo $this->translate ( 'errorLogin' );
+							unset ( $_SESSION ['errorIn'] );
+						}
+						?></p>
+						<label><span class="icos-user"></span><?php echo $this->translate('username');?> </label>
+						<input value="<?php echo (isset($_COOKIE['cookname']))?$_COOKIE['cookname']:'';?>" type="text" name="User_login" class="validate[required] span12" id="username" /> 
+						<label><span class="icos-locked"></span><?php echo $this->translate('password');?></label>
+						<input value="<?php echo (isset($_COOKIE['cookpass']))?$_COOKIE['cookpass']:'';?>" name="User_password" type="password" class="validate[required] span12" name="minValid" id="minValid"  />
+						<div style="height:15px;display:block;"></div>
+						<select id="languageSwitch">
+							<option>Select your language</option>
+							<option value="fr"	<?php echo ($this->translate('lang')=='fr'?'selected="selected"':'fr')?>>French</option>
+							<option value="en"	<?php echo ($this->translate('lang')=='en'?'selected="selected"':'fr')?>>English (US)</option>
+						</select> <input type="submit" name="BtnSubmit"	class="buttonL bGreen formSubmit" value="<?php echo $this->translate('login');?>" />
+						
+						<div class="formRow">
+		                    <input type="checkbox" id="check2S" name="txtRemember"  class="check"/>
+		                    <label for="check2S"  class="nopadding"><?php echo $this->translate('remember-me');?></label>
+		                    <div class="clear"></div>
+		                </div>										
+						</fieldset>
+					</form>
+				<a href="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/recovery"><?php echo $this->translate('recoveryAccount');?></a>
+    	</div>
+    </div>
+</div>
+<?php }?>

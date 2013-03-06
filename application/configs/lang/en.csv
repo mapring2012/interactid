@@ -1,0 +1,233 @@
+?# English
+Home;Home'
+site-name;Interactid
+site-discrition;Interactid
+site-author;Interactid
+
+##### Menu content #####
+welcome;Welcome
+sign_out;Sign out
+employees;Employees
+help;Help
+about;About
+
+##### Top Menu channa #####
+create_organisme;Create Organisme
+view_organisme;View Organisme
+create_site;Create Site
+view_site;View Sites
+create_type_equipement;Create Type Equipement
+equipement;Equipement
+view_equipement;View Equipement
+site;Site
+view_site;View Site
+type_equipement;Type Equipement
+
+##### for login page ####
+lang;en
+message;Welcome to interactid application
+Connection;Connection
+message;interactid application
+welcome-to;Welcome to
+password;Password
+username;Username
+forgot-your-password;Forgot your password?
+your-username-or-password-is-incorrect;Your username or password is incorrect!
+remember-me;Remember Me
+login;Login
+logout;Logout
+register;Register
+#for error messages login##
+errorLogin;In valid username and password!
+errorBlank;Please enter password and username!
+already_a_member?;Already a member? Sign in
+subscribe_now;Subscribe Now
+get_started;Get Started
+
+
+########for register ######
+profile;Profile
+title;Title
+firstname;First name
+lastname;Last name
+username;Username
+password;Password
+confirmpassword;Confirm Password
+email;Email
+position;Position
+telephone;Telephone
+mobilephone;Mobile Phone
+compnayname;Company Name
+logo;Logo
+companyactivity;Company Activity
+siret;Siret
+codeAPE;CodeAPE
+capitalsocail;Capital Socail
+staff;Staff
+N° TVA;N° TVA
+siteweb;Site web http://www
+adress;Address
+codepostal;Zip Code / Code Postal
+city;City
+country;Country
+fax;Fax
+selectprofile;Please select profile
+selecttitle;Please select title
+selectcountry;Please select country
+submit;Submit
+recoveryAccount;Can't access your account?
+assigncompany;Assign to company
+status;Status
+function;Function
+showmore;Show more
+showless;Show less
+contactinformation;Contact Information
+companyinformation;Company Information
+createdate;Create Date
+modifydate;Modify Date
+
+###########For Deshboard##############
+home;Dashboard
+admin;Administrator
+support;Support
+employee;Employee
+myinteractid;My Interactid
+historical;Historical
+exportdestables;Export des Tables
+controlvisuel;Control Visuel
+myinterventions;My interventions 
+myactivitystream;My Activity Stream   
+startdate;Start date 
+accept;Accept?
+
+
+########### BUTTON ##################
+buttonContinue;Continue
+
+
+########### user status #############
+active;Active
+suspend;Suspend
+inactive;Inactive
+
+######### Add Organisme and edit #############
+companyname;Name
+RaisonSocial;Raison Social
+companysiret;Siret
+companyTVA;TVA
+companylogo;Logo 
+companyaddress1;Address
+companyaddress2;Address
+companycodepostal;Zip Code
+companycity;City
+companycountry;Country
+companytelephone;Telephone
+companyfax;Fax
+companywebsite;Website
+companyemail;Email
+companystatus;Status
+selectstatus;Select Status
+companytype;Type
+selectone;Select One
+codereference;Code Reference
+datevalidation;Date Validate
+companylevel;Level
+companytab1;Account Information
+companytab2;More information
+overview;Overview
+other;Other
+yes;Yes
+no;No
+submit;Submit
+reset;Clear
+cancel;Cancel
+update;Update
+back;Back
+selectstate;Select State
+selectone;Select one
+selectstatus;Status
+selectmap;Please click Address1 and City on map ! or Input in text field Address1 and City !
+####### Already put it in coding #####
+
+########## Add site and edit ##################
+sitename;Site Name
+sitedescription;Site Description
+sitecodefunction;Site Codefunction
+siteaddress;Address
+sitecity;Site City
+sitezipcode;Site Zipcode
+sitetype;Site Type
+sitestatus;Site Status
+organisme;Organisme
+sitegpslong;Site GPS Long
+sitegpsdatetime;Site GPS Date Time
+referencecode;Reference Code
+sitelevel;Site Level
+filename;File Name
+addfile;Add Files
+startupload;Start Upload
+size;Size
+status;Status
+googlemap;Please select the address from Google map
+
+############ Type Equipement ###########
+typeequipmentname;Type Equipement Name
+reference;Reference
+addtypeequipmentname;Add Type Equipment
+edittypeequipment;Edit Type Equipment
+maintenance;Maintenance
+
+############## javascript validation form ##########
+requiredfile;This field is required.
+validemail;Please enter a valid email address.
+validurl;Please enter a valid URL.
+validdate;Please enter a valid date.
+validdateISO;Please enter a valid date (ISO).
+validnumber;Please enter a valid number.
+onlydigit;Please enter only digits.
+creditcardnumber;Please enter a valid credit card number.
+samevalue;Please enter the same value again.
+validextension;Please enter a value with a valid extension.
+morecharacters;Please enter no more than {0} characters.
+leastcharacter;Please enter at least {0} characters.
+betweenandlongcharacter;Please enter a value between {0} and {1} characters long.
+valuebetween0and1;Please enter a value between {0} and {1}.
+valuelessthanorequal;Please enter a value less than or equal to {0}.
+valuegreater;Please enter a value greater than or equal to {0}.
+
+########### Add User and edit###############
+userfunciton;User function
+userreferencecode;Code Reference
+userlevel;User Level
+company;Company
+addnewuser;Create new user
+edituser;Edit User
+officephone;Office phone
+image;Picture
+seeuser;View User
+useraccount;User account
+
+
+########## Message ############
+areyousure;Are you sure you want to delete?
+
+########## View form ##########
+applyaction;Apply action
+apply;Apply 
+delete;Delete
+edit;Edit
+create;Create
+remove;Remove
+search;Search
+advancesearch;Advance search
+basicsearch;Basic search
+contact;Contact
+vieworganisme;View Organisme
+viewsite;View Site
+viewtypeequipement;View Type Eqipement
+siteacontroler;Site a Controller
+
+###################### Breadcrumbs########################
+adduser;Add User
+edituser;Edit User
+addorganisme;Add Organisme

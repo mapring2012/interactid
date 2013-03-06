@@ -1,0 +1,13 @@
+<ul class="subNav" id="nav">
+	<li class="<?php echo ($this->action=='index')?'activeli':'';?>"><a
+		class="<?php echo ($this->action=='index')?'this':'';?>"
+		href="<?php echo $this->baseUrl();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller;?>/index"
+		title=""><span class="icos-admin2"></span>Organisme</a></li>
+	<li class="<?php echo ($this->action=='add')?'activeli':'';?>"><a
+		class="<?php echo ($this->action=='add')?'this':'';?>"
+		href="<?php echo $this->baseUrl();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller;?>/add"
+		title=""><span class="icos-settings2"></span>Add new</a></li>
+	<li><a
+		href="<?php echo $this->baseUrl();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller;?>/#" title=""><span
+			class="icos-users2"></span><?php echo $this->action;?> search</a></li>
+</ul>

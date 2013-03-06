@@ -1,0 +1,93 @@
+<?php
+    $javascript ='';
+    $cssScript = '';
+    $pageTitle = 'Type Equipement';
+    $cssScript = '<style>.formRow{padding: 5px 16px;}#main8 .widget{margin-top: 15px;}</style>';
+	$content = $this->controller.'/'.$this->action.'.phtml';
+    require_once TMP_USER_PATH;
+?>
+
+<div id="contentdata"> 
+<div class="wrapper">
+<div class="fluid">
+            <form id="validate" class="main" method="post" action="<?php echo $this->url(array('action'=>'add'));?>">
+                <fieldset>
+                    <div class="widget grid12">
+                        <div class="whead"><h6><?php echo $this->translate('addtypeequipmentname')?></h6><div class="clear"></div></div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('typeequipmentname')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"><input type="text" class="validate[required]" name="txttypename" id="txttypename"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label>Description:</label></div>
+                            <div class="grid9"><input type="text" name="txttypedescription" id="txttypedescription"/></div><div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('reference')?>:<span class="req">*</span></label></div>
+                            <div class="grid9">
+                            <select class="validate[required]" name="txtreference" id="txtreference">
+                            	<option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+                        <?php 
+							if(count($this->RefCode)!=0){
+							 foreach($this->RefCode as $code){
+						?>				
+						<option value="<?php echo $code['ref_Code'];?>"><?php echo $code['ref_code_lib'];?></option>
+						<?php 
+							}
+						   }
+						?>
+                            </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('sitename')?>:<span class="req">*</span></label></div>
+                            <div class="grid9">
+                            <select class="validate[required]" name="txtisitename" id="txtisitename">
+                            	<option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+			                        <?php 
+										if(count($this->siteName)!=0){
+										 foreach($this->siteName as $getSiteName){
+									?>				
+									<option value="<?php echo $getSiteName['site_Id'];?>"><?php echo $getSiteName['site_Name'];?></option>
+									<?php 
+										}
+									   }
+						?>
+                            </select></div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        
+                        
+                         <div class="formRow">
+                            <div class="grid3"><label><?php echo $this->translate('company')?>:<span class="req">*</span></label></div>
+                            <div class="grid9"> 
+                            <select class="validate[required]" name="txtcompanyname" id="txtcompanyname">
+                            	<option value="1">---- <?php echo $this->translate('selectone')?> ----</option>
+			                        <?php 
+										if(count($this->CompanyName)!=0){
+										 foreach($this->CompanyName as $getCompanyName){
+									?>				
+									<option value="<?php echo $getCompanyName['Com_Id'];?>"><?php echo $getCompanyName['Com_Name'];?></option>
+									<?php 
+										}
+									   }
+									?>
+                            </select></div><div class="clear"></div>
+                        </div>
+                        <div class="formRow"><input type="submit" value="<?php echo $this->translate('submit')?>"  name="BtnAddNew" class="buttonM bBlue formSubmit" /><div class="clear"></div></div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    
+                </fieldset>
+            </form>
+        </div>
+		
+	</div>
+</div>

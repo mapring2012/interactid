@@ -1,0 +1,5 @@
+<ul class="subNav" id="nav">
+	<li class="<?php echo ($this->action=='index')?'activeli':'';?>"><a class="<?php echo ($this->action=='index')?'this':'';?>" href="index" title=""><span class="icos-admin2"></span>Site</a></li>
+	<li class="<?php echo ($this->action=='add')?'activeli':'';?>"><a class="<?php echo ($this->action=='add')?'this':'';?>" href="<?php echo $this->url(array('action'=>'add'))?>" title=""><span	class="icos-settings2"></span>Add new site</a></li>
+	<li><a href="#" title=""><span class="icos-users2"></span><?php echo $this->action;?> search</a></li>
+</ul>

@@ -1,0 +1,233 @@
+?# Francais
+Home;Acceuil
+site-name;Interactid
+site-discrition;Interactid
+site-author;Interactid
+
+##### Menu content #####
+welcome;Bienvenue
+sign_out;Déconnexion
+employees;Employés
+help;Aide
+about;A propos
+
+##### Top Menu channa #####
+create_organisme;Créer Organisme
+view_organisme;Organisme
+create_site;Créer Site
+view_site;Sites
+create_type_equipement;Créer Type Equipement
+equipement;Equipement
+site;Site
+type_equipement;Type Equipement
+
+##### for login page ####
+lang;fr
+message;Interactid Plateform Collaborative De Mobilier - Aires de Jeux
+Connection;Connexion
+message;interactid application
+welcome-to;Bienvenue sur
+password;Mot de passe
+username;Choisissez Identifiant
+forgot-your-password;Connectez-vous Me votre mot de passe?
+your-username-or-password-is-incorrect;Votre identifiant ou votre mot de passe sont incorrects!
+remember-me;Se souvenir de moi
+login;Connexion
+logout;Logout
+register;ENREGISTRER
+#for error messages login##
+errorLogin;Votre identifiant ou votre mot de passe sont incorrects!
+errorBlank;Veuillez entrez votre identifiant et votre mot de passe!
+already_a_member?; Déjà membre? connexion
+subscribe_now;Créer un compte
+get_started;Inscription
+
+
+########for register ######
+profile;Profil
+title;Titre
+firstname;Prénom
+lastname;Nom
+username;Nom d'utilisateur
+password;Mot de passe
+confirmpassword;Confirmation mod de passe
+email;Email
+position;Fonction
+telephone;Téléphone
+mobilephone;Téléphone mobile
+companyname;Nom Société
+logo;Logo
+companyactivity;Activité de la société
+siret;Siret
+codeAPE;CodeAPE
+capitalsocail;Capital Socail
+staff;Effectif
+N° TVA;N° TVA
+siteweb;Site web http://www
+address;Address
+codepostal;Codpostal
+city;Ville
+country;Pays
+fax;Fax
+selectprofile;Sélectionnez votre Profil
+selecttitle;Sélectionnez votre Civilité 
+selectcountry;Sélectionnez votre Pays
+submit;Soumettre
+recoveryAccount;Vous ne pouvez pas accéder à votre compte?
+assigncompany;Affectez à la société
+status;Statut
+function;Fonction
+showmore;Montrer plus
+showless;Montrer moins
+contactinformation;Coordonnées
+companyinformation;Informations sur la société
+createdate;Date de création
+modifydate;Modifier la date
+
+###########For Deshboard##############
+home;Accueil
+admin;Administrateur
+support;Soutenir
+employee;Employé
+myinteractid;Mon Interactid
+historical;Historique
+exportdestables;Exporter des Tables
+controlvisuel;Contrôle Visuel
+myinterventions;Mes interventions
+myactivitystream;Mon flux d'activité
+startdate;Date de début
+accept;Accepter?
+
+
+########### BUTTON ##################
+buttonContinue;Continuer
+
+
+########### user status #############
+active;Actif
+suspend;Suspendu
+inactive;Inactif
+
+######### Add Organisme edit #############
+companyname;Nom
+RaisonSocial;Raison Social
+companysiret;Siret
+companyTVA;TVA 
+companylogo;Logo
+companyaddress1;Adresse
+companyaddress2;Adresse
+companycodepostal;Code postal 
+companycity;Ville
+companycountry;Pays
+companytelephone;Téléphone
+companyfax;Fax
+companywebsite;Site Web 
+companyemail;E-mail
+companystatus;Statut
+selectstatus;Sélectionner l'état
+companytype;Type
+selectone;Sélectionnez l'une
+codereference;Propriétaire
+datevalidation;Valide la date
+companylevel;Niveau
+companytab1;Information sur le compte
+companytab2;Plus d'informations
+overview;Vue d'ensemble
+other;Autre
+yes;Oui
+no;NOn
+submit;Soumettre
+cancel;Annuler
+reset;Effacer
+update;Mettre à jour
+back;Arrière
+selectstate;Sélectionnez Etat
+selectone;Sélectionnez l'une
+selectstatus;Sélectionnez statut
+selectmap;S'il vous plaît cliquer Adresse1 et la ville à la carte! ou d'entrée dans le champ de texte et Adresse1 ville!
+####### Already put it in coding #####
+
+########## Add site and edit ##################
+sitename;Nom du site
+sitedescription;Description du site
+sitecodefunction;CodeFunction site
+siteaddress;Adresse du site
+sitecity;Ville du site
+sitezipcode;Code postal du site
+sitetype;Type de site
+sitestatus;Statut du site
+organisme;Organisme
+sitegpslong;GPS longues du site
+sitegpsdatetime;Site GPS Date Heure
+referencecode;Code de référence
+sitelevel;Niveau du site
+filename;Nom du fichier
+addfile;Ajouter un fichier
+startupload;Début Téléchargez
+size;Taille
+status;Statut
+googlemap;S'il vous plaît sélectionnez l'adresse dans Google map
+
+############ Type Equipement ###########
+typeequipmentname;Nom Type d'équipement
+reference;Référence
+addtypeequipmentname;Ajouter equipmentname type de
+edittypeequipment;Modifier le type d'équipement
+maintenance;Entretien
+
+############## javascript validation form ##########
+requiredfile;Ce champ est obligatoire.
+validemail;S'il vous plait entrer une adresse email valide.
+validurl;S'il vous plaît entrer une URL valide
+validdate;S'il vous plaît entrer une date valide.
+validdateISO;S'il vous plaît entrer une date valide (ISO).
+validnumber;S'il vous plaît entrer un nombre valide.
+onlydigit;S'il vous plaît entrer que des chiffres.
+creditcardnumber;S'il vous plaît entrer un numéro de carte de crédit valide.
+samevalue;S'il vous plait entrer la meme valeur a nouveau.
+validextension;S'il vous plaît entrer une valeur valide avec une extension.
+morecharacters;S'il vous plaît entrez pas plus de {0} caractères.
+leastcharacter;S'il vous plait entrer au moins {0} caracteres.
+betweenandlongcharacter;S'il vous plaît entrer une valeur entre {0} et {1} caractères.
+valuebetween0and1;S'il vous plaît entrer une valeur entre {0} et {1}.
+valuelessthanorequal;S'il vous plaît entrez une valeur inférieure ou égale à {0}.
+valuegreater;S'il vous plaît entrer une valeur supérieure ou égale à {0}.
+
+########### Add User and edit ###############
+userfunciton;Fonction de l'utilisateur
+userreferencecode;Référence
+userlevel;Niveau de l'utilisateur
+company;Organisme
+addnewuser;Créer un nouvel utilisateur
+edituser;Modifier l'utilisateur
+officephone;Téléphone de bureau
+image;Image
+seeuser;Afficher l'utilisateur
+useraccount;Compte d'utilisateur
+
+
+
+########## Message ############
+areyousure;Êtes-vous sûr de vouloir supprimer?
+
+########## View form ##########
+applyaction;Appliquer des mesures
+apply;Appliquer
+delete;Supprimer
+edit;Éditer
+remove;Enlever
+create;Créer
+search;Rechercher
+advancesearch;Recherche avancée
+basicsearch;Recherche de base
+contact;Contacter
+vieworganisme;Voir Organisme
+viewsite;Voir Site
+viewtypeequipement;Voir Type d'équipement
+siteacontroler;Site d'un contrôleur
+
+
+###################### Breadcrumbs########################
+adduser;Créer un utilisateur
+edituser;Modifier l'utilisateur
+addorganisme;Créer Organisme

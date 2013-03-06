@@ -1,0 +1,202 @@
+<?php
+$javascript = '';
+$cssScript = '';
+$pageTitle = $this->translate('adduser');
+$cssScript = '<style>.formRow{padding: 5px 16px;}#main8 .widget{margin-top: 15px;}label.error{margin:0;}</style>';
+$content = $this->controller . '/' . $this->action . '.phtml';
+require_once TMP_USER_PATH;
+?>
+<style>
+#mss .nSuccess{
+	font-weight: bold;
+    margin: 0;
+    padding: 0 25px 10px;    
+    text-shadow: 0 1px 0 #FFFFFF;
+    margin-top:18px;
+}
+.cuser {margin:15px 0 15px 0}
+.adduser {font-size:20px;float:right;}
+.addusertxt {padding: 0 0 0 5px;
+ font-size: 16px;
+    font-weight: bold;
+    line-height: 23px;
+    margin-left: 0;
+    padding: 0 5px;
+    text-decoration: none;
+    text-shadow: 1px 1px #EFEFEF;
+}
+#div_control .widget {margin-top: 0;}
+.left {float:left}
+.right {float:right}
+</style>
+<div class="wrapper">
+
+
+				<!-- result content -->
+
+<div class="clear"></div>
+    <div class="widget">
+    <div class="whead"><h6><?php echo $this->translate('addnewuser')?></h6><div class="clear"></div></div>               
+                <form name="createUserForm" onsubmit="return validateForm()" enctype="multipart/form-data" id="usualValidate" class="main" method="post" action="<?php echo $this->baseUrl ();?>/<?php echo $this->translate('lang')?>/<?php echo $this->controller?>/adduser">               
+                
+                    <div class="formRow fluid noBorderB">
+                        <div class="grid12">
+                            
+                            <div class="formRow">
+		                        <div class="grid4"><label><?php echo $this->translate('title')?>:</label></div>
+		                        <div class="grid6">
+		                        	<select name="users_title" id="users_title">
+										<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+										<?php 
+										  if(count($this->usertitle)){
+										  	foreach ($this->usertitle as $rows){
+                   						 ?><option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_Description'];?></option>
+                   						 <?php 
+										  		
+										  	}
+										  }
+										?>
+									</select>
+                                    <!--<label for="users_title" class="error users_titleLabel" style="display: none;"><?php //echo $this->translate('requiredfile')?></label>-->
+		                        </div><div class="clear"></div>
+             			    </div>
+                            
+                            <div class="formRow">
+		                        <div class="grid4"><label><?php echo $this->translate('firstname')?>:<span class="req">*</span></label></div>
+		                        <div class="grid6"><input type="text" value="" name="users_firstname" id="users_firstname" class="required" /></div>
+		                        <div class="clear"></div>
+             			    </div>
+                            
+                            <div class="formRow">
+		                        <div class="grid4"><label><?php echo $this->translate('lastname')?>:<span class="req">*</span></label></div>
+		                        <div class="grid6"><input type="text" value="" name="users_lastname" id="users_lastname" class="required" /></div>
+		                        <div class="clear"></div>
+             			    </div>
+                            
+                            
+             			    <div class="formRow">
+		                        <div class="grid4"><label><?php echo $this->translate('username')?>:<span class="req">*</span></label></div>
+		                        <div class="grid6"><input type="text" value="" name="users_name" id="users_name" class="required" /></div>
+		                        <div class="clear"></div>
+             			    </div>
+                            
+                            
+             			    <div class="formRow">
+		                        <div class="grid4"><label><?php echo $this->translate('password')?>:<span class="req">*</span></label></div>
+		                        <div class="grid6"><input type="password" value="" name="txtpassword" id="txtpassword" class="required" /></div>
+		                        <div class="clear"></div>
+             			    </div>
+                            
+                            
+                            <div class="formRow">
+                                <div class="grid4"><label><?php echo $this->translate('confirmpassword')?>:<span class="req">*</span></label></div>
+                                <div class="grid6"><input type="password" name="repeatPass" id="repeatPass" class="required" /></div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="formRow">
+                                <div class="grid4"><label><?php echo $this->translate('email')?>:<span class="req">*</span></label></div>
+                                <div class="grid6"><input type="text" value="" name="txtemail" id="txtemail" class="required" /></div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                             <div class="formRow">
+                                <div class="grid4"><label><?php echo $this->translate('mobilephone')?>:</label></div>
+                                <div class="grid6"><input type="text" value="" name="users_mobilephone" id="users_mobilephone" /></div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="formRow">
+                                <div class="grid4"><label><?php echo $this->translate('assigncompany')?><span class="req">*</span></label></div>
+                                <div class="grid8">
+                                    <select name="comId" id="comId" class="required">
+        								<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+        								<?php 
+    										  if(count($this->selectCompany)){
+    										  	foreach ($this->selectCompany as $rows){
+                       						 ?><option value="<?php echo $rows['Com_Id'];?>"><?php echo $rows['Com_Name'];?></option>
+                       						 <?php 
+    										  		
+    										  	}
+    										  }
+    										?>	
+        							</select>
+                                    <label for="comId" class="error comIdLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>                            
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="formRow">
+                                <div class="grid4"><label><?php echo $this->translate('status')?>:<span class="req">*</span></label></div>
+                                <div class="grid6">
+                                    <select name="users_statut" id="users_statut" class="required">
+        								<option value="">---- <?php echo $this->translate('selectone')?> ----</option>
+        								<?php 
+    										  if(count($this->Userstatus)){
+    										  	foreach ($this->Userstatus as $rows){
+                       						 ?><option value="<?php echo $rows['ref_code_lib'];?>"><?php echo $rows['ref_code_lib'];?></option>
+                       						 <?php 
+    										  		
+    										  	}
+    										  }
+    										?>	
+        							</select>
+                                    <label for="comId" class="error comIdLabel" style="display: none;"><?php echo $this->translate('requiredfile')?></label>                            
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="formRow">
+                                <div class="body" align="center">
+                                    <input type="reset" class="buttonS bRed" id="close_button" value="<?php echo $this->translate('cancel')?>" />
+                                    <input class="buttonS bBlue" id="close_button" name="btnSave" type="submit" value="<?php echo $this->translate('submit')?>" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <!-- end 1 <div class="grid6"> -->
+
+                        <div class="clear"></div>
+                    </div>
+                    <!-- end <div class="formRow fluid noBorderB"> -->
+			</form>
+            <div class="clear"></div>
+		</div>
+				<!-- end company content -->
+
+</div>
+<script>
+function validateForm()
+{ 
+/*var x=document.forms["createUserForm"]["users_title"].value;
+if (x==null || x=="")
+  {
+  $('.users_titleLabel').show();
+  return false;
+  }*/
+
+var r=document.forms["createUserForm"]["users_refcode"].value;
+if (r==null || r=="")
+  {
+  $('.users_refcodeLabel').show();
+  return false;
+  }
+  
+var f=document.forms["createUserForm"]["users_level"].value;
+if (f==null || f=="")
+  {
+  $('.users_levelLabel').show();
+  return false;
+  }
+  
+  
+var r=document.forms["createUserForm"]["comId"].value;
+if (r==null || r=="")
+  {
+  $('.comIdLabel').show();
+  return false;
+  }
+  
+
+}
+</script>

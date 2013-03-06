@@ -1,0 +1,92 @@
+<?php
+    $javascript ='';
+    $cssScript = '';
+    $pageTitle = 'Organisme';
+    $content = $this->controller.'/'.$this->action.'.phtml';
+    require_once TMP_USER_PATH;
+?>
+<form action="" method="post">
+<div class="wrapper">
+    <div class="fluid">        
+        <div class="widget grid5">
+            <div class="whead"><h6>Add New Category</h6><div class="clear"></div></div>
+                <div class="formRow">
+                    <div class="grid3"><label>Name:</label></div>
+                    <div class="grid9"><input type="text" name="txtcateName"/></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="formRow">
+                    <div class="grid3"><label>Slug:</label></div>
+                    <div class="grid9"><input type="text" name="txtslugName" /></div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="formRow">
+                     <div class="grid3"><label>Parent:</label></div>
+                     <div class="grid9">                       
+                         <select name="cboParent">
+                            <option value="-1">None</option>
+                            <?php
+                                $CateArray = $this->Categories;
+                                foreach ($CateArray as $row)
+                                {
+                                ?>
+                                <option value="<?php echo $row['term_id'];?>"><?php echo $row['name'];?></option>
+                                <?php 
+                                }
+                            ?>
+                         </select>
+                    </div>
+                    <div class="clear"></div>        
+                 </div>
+                
+                <div class="formRow">
+                    <div class="grid3"><label>Description:</label></div>
+                    <div class="grid9"><textarea name="CatDescription" cols="" rows="3"></textarea></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="formRow">                
+                    <input class="buttonS bDefault" name="CateSubmit" type="submit" value="Submit" />    
+                    <div class="clear"></div>
+                </div>        
+        </div>        
+                            
+        <!-- Table with checkboxes -->
+        <div class="widget grid7">
+            <div class="whead"><span class="titleIcon check"><input type="checkbox" id="titleCheck" name="titleCheck" /></span><h6>Static table with checkboxes</h6><div class="clear"></div></div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="tDefault checkAll check" id="checkAll">
+              <thead>
+                  <tr>
+                      <td><img src="images/elements/other/tableArrows.png" alt="" /></td>
+                      <td>Column name</td>
+                      <td>Column name</td>
+                      <td>Column name</td>
+                      <td>Column name</td>
+                      <td>Column name</td>
+                  </tr>
+              </thead>
+              <tbody>
+              <?php
+                                $CateArrayList = $this->CategorieList;
+                                foreach ($CateArrayList as $row)
+                                {
+                                ?>                                
+                                
+                  <tr>
+                      <td><input type="checkbox" value="<?php echo $row['term_id'];?>" id="titleCheck2" name="checkRow" /></td>
+                      <td><?php echo $row['name'];?></td>
+                      <td>Row 2</td>
+                      <td>Row 3</td>
+                      <td>Row 4</td>
+                      <td>Row 5</td>
+                  </tr>
+              <?php 
+                    }
+                ?>    
+              </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+</form>    
